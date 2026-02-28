@@ -4,6 +4,10 @@
   margin: 0; padding: 0; box-sizing: border-box;
 }
 
+html, body, #root {
+  background: #f8f7f4;
+}
+
 html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
@@ -12,7 +16,6 @@ html {
 
 body {
   font-family: -apple-system, 'Inter', 'Helvetica Neue', sans-serif;
-  background: #f8f7f4;
   color: #2c2c2e;
   overflow-x: hidden;
 }

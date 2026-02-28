@@ -125,9 +125,9 @@ function How() {
 
 function Trust() {
   const nums = [
-    ['99%', 'Match accuracy'],
-    ['4', 'Countries'],
-    ['Seconds', 'Not weeks'],
+    ['4', 'Countries supported'],
+    ['Seconds', 'To reconcile'],
+    ['Less', 'Time spent chasing'],
   ]
   return (
     <section style={{ padding: '120px 0 160px' }}>
