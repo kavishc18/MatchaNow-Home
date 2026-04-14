@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from 'react'
-import { motion } from 'framer-motion'
+import { useState, useEffect, useRef, useCallback } from 'react'
+import { motion, useMotionValue, useSpring, AnimatePresence } from 'framer-motion'
 import { ArrowRight, TrendingUp, Shield, Zap, Globe } from 'lucide-react'
 import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
@@ -314,7 +314,7 @@ function Analytics() {
         <F>
           <p className="sec-label">Real-time analytics</p>
           <h2 className="sec-h">Everything at a glance</h2>
-          <p className="sec-sub">Track reconciliation accuracy, invoice volume, and filing status across India and the US.</p>
+          <p className="sec-sub">Track reconciliation accuracy, invoice volume, and filing status across any jurisdiction.</p>
         </F>
 
         <div className="chart-grid">
@@ -480,30 +480,129 @@ function Features() {
   )
 }
 
-/* ─── Jurisdictions ─── */
+/* ─── Cross-border flow data ─── */
+const CROSSBORDER_DATA = [
+  { month: 'Jan', flow: 12 },
+  { month: 'Feb', flow: 18 },
+  { month: 'Mar', flow: 24 },
+  { month: 'Apr', flow: 21 },
+  { month: 'May', flow: 32 },
+  { month: 'Jun', flow: 38 },
+  { month: 'Jul', flow: 35 },
+  { month: 'Aug', flow: 44 },
+  { month: 'Sep', flow: 52 },
+  { month: 'Oct', flow: 58 },
+  { month: 'Nov', flow: 63 },
+  { month: 'Dec', flow: 71 },
+]
+
+/* ─── Jurisdictions — separate cards + cross-border section ─── */
+const INDIA_FEATURES = [
+  { title: 'GSTR-2B reconciliation', sub: 'Auto-match invoices against government records.' },
+  { title: 'ITC optimisation', sub: 'Maximise input tax credits automatically.' },
+  { title: 'TDS & advance tax', sub: 'Quarterly filings, computed and filed on time.' },
+  { title: 'E-invoicing', sub: 'IRN and e-way bills from your ERP data.' },
+]
+
+const US_FEATURES = [
+  { title: 'Nexus monitoring', sub: 'Track thresholds across every state.' },
+  { title: 'Sales tax filing', sub: 'Returns filed wherever you have obligations.' },
+  { title: '1099 processing', sub: 'Vendor classification and year-end generation.' },
+  { title: 'Exemptions', sub: 'Certificates and use tax handled automatically.' },
+]
+
+function JurCard({ flag, headline, desc, features, delay = 0 }) {
+  return (
+    <F delay={delay}>
+      <div className="jur-detail-card">
+        <div className="jur-detail-head">
+          <span className="jur-detail-flag">{flag}</span>
+          <div>
+            <h3 className="jur-detail-title">{headline}</h3>
+            <p className="jur-detail-desc">{desc}</p>
+          </div>
+        </div>
+        <div className="jur-features-grid">
+          {features.map((f, i) => (
+            <div key={i} className="jur-feature">
+              <span className="jur-feature-dot" />
+              <div>
+                <p className="jur-feature-title">{f.title}</p>
+                <p className="jur-feature-sub">{f.sub}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </F>
+  )
+}
+
 function Jurisdictions() {
-  const rows = [
-    { flag: '🇮🇳', name: 'India', desc: 'GSTR-2B · ITC matching · TDS returns · Advance tax', live: true },
-    { flag: '🇺🇸', name: 'United States', desc: 'Multi-state sales tax · Nexus filing · 1099 processing', live: true },
-  ]
   return (
     <section className="jur-sec">
       <div className="con">
-        <F><p className="sec-label">Jurisdictions</p></F>
-        <div className="jur-list">
-          {rows.map((r, i) => (
-            <F key={r.name} delay={i * 0.05}>
-              <div className="jur-row">
-                <span className="jur-flag">{r.flag}</span>
-                <div className="jur-mid">
-                  <span className="jur-name">{r.name}</span>
-                  <span className="jur-desc">{r.desc}</span>
-                </div>
-                <span className="jur-badge">Live</span>
-              </div>
-            </F>
-          ))}
+        <F>
+          <p className="sec-label">Where we operate</p>
+          <h2 className="sec-h">One engine. Any jurisdiction.</h2>
+          <p className="sec-sub">Built to scale across jurisdictions.</p>
+        </F>
+
+        <div className="jur-cards-stack">
+          <JurCard
+            flag="🇮🇳"
+            headline="India"
+            desc="GST reconciliation, ITC claims, TDS, e-invoicing."
+            features={INDIA_FEATURES}
+            delay={0.05}
+          />
+          <JurCard
+            flag="🇺🇸"
+            headline="United States"
+            desc="Multi-state sales tax, nexus tracking, 1099s."
+            features={US_FEATURES}
+            delay={0.1}
+          />
         </div>
+
+        {/* Cross-border mini section */}
+        <F delay={0.15}>
+          <div className="crossborder-card">
+            <div className="crossborder-head">
+              <div className="crossborder-flags">
+                <span>🇮🇳</span>
+                <span className="crossborder-arrow">⇄</span>
+                <span>🇺🇸</span>
+              </div>
+              <div>
+                <h3 className="chart-card-title">Cross-border flow</h3>
+                <p className="chart-card-sub">Monthly reconciled transactions between India and US</p>
+              </div>
+            </div>
+            <div className="chart-area-wrap">
+              <ResponsiveContainer width="100%" height={140}>
+                <AreaChart data={CROSSBORDER_DATA} margin={{ top: 8, right: 8, left: -20, bottom: 0 }}>
+                  <defs>
+                    <linearGradient id="gradCross" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#11B67A" stopOpacity={0.2} />
+                      <stop offset="100%" stopColor="#11B67A" stopOpacity={0} />
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#333339" vertical={false} />
+                  <XAxis dataKey="month" tick={{ fill: '#7d7770', fontSize: 11 }} axisLine={false} tickLine={false} />
+                  <YAxis tick={{ fill: '#7d7770', fontSize: 11 }} axisLine={false} tickLine={false} />
+                  <Area
+                    type="monotone" dataKey="flow"
+                    stroke="#11B67A" strokeWidth={2}
+                    fill="url(#gradCross)" fillOpacity={1}
+                    dot={false}
+                    activeDot={{ r: 3, fill: '#11B67A', stroke: '#1e1e22', strokeWidth: 2 }}
+                  />
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+        </F>
       </div>
     </section>
   )
@@ -515,7 +614,7 @@ function CTA() {
     <section className="cta-sec">
       <div className="con" style={{ textAlign: 'center' }}>
         <F><h2 className="cta-h">Ready to automate your accounting?</h2></F>
-        <F delay={0.05}><p className="cta-sub">30 minutes. No commitment.</p></F>
+        <F delay={0.05}><p className="cta-sub">30 minutes.</p></F>
         <F delay={0.09}>
           <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn-cta btn-lg">
             Book a free call <ArrowRight size={15} />

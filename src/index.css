@@ -705,12 +705,19 @@ button {
   gap: 14px;
 }
 
+.features-grid>div {
+  display: flex;
+}
+
 .feature-card {
   background: var(--bg1);
   border: 1px solid var(--b1);
   border-radius: var(--radius-lg);
   padding: 26px;
   transition: border-color 300ms, transform 300ms, box-shadow 300ms;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .feature-card:hover {
@@ -791,67 +798,128 @@ button {
   color: var(--yel);
 }
 
-/* ── jurisdictions ── */
+/* ── jurisdictions — separate stacked cards ── */
 .jur-sec {
   padding: 72px 0;
   border-top: 1px solid var(--b0);
 }
 
-.jur-list {
+.jur-cards-stack {
   display: flex;
   flex-direction: column;
-}
-
-.jur-row {
-  display: grid;
-  grid-template-columns: 40px 1fr auto;
-  align-items: center;
   gap: 16px;
-  padding: 20px 0;
-  border-bottom: 1px solid var(--b0);
-  transition: padding-left 250ms;
+  margin-bottom: 16px;
 }
 
-.jur-row:first-child {
-  border-top: 1px solid var(--b0);
+.jur-detail-card {
+  background: var(--bg1);
+  border: 1px solid var(--b1);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  transition: border-color 300ms;
 }
 
-.jur-row:hover {
-  padding-left: 6px;
+.jur-detail-card:hover {
+  border-color: var(--b2);
 }
 
-.jur-flag {
-  font-size: 22px;
-}
-
-.jur-mid {
+.jur-detail-head {
   display: flex;
-  flex-direction: column;
-  gap: 3px;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--b0);
 }
 
-.jur-name {
-  font-size: 15px;
+.jur-detail-flag {
+  font-size: 32px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.jur-detail-title {
+  font-family: var(--serif);
+  font-size: 20px;
   font-weight: 500;
   color: var(--cream);
+  margin-bottom: 6px;
+  line-height: 1.2;
 }
 
-.jur-desc {
+.jur-detail-desc {
+  font-size: 14px;
+  color: var(--t2);
+  line-height: 1.6;
+}
+
+.jur-features-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.jur-feature {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.jur-feature-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  flex-shrink: 0;
+  margin-top: 6px;
+  opacity: 0.7;
+}
+
+.jur-feature-title {
   font-size: 13px;
-  color: var(--t3);
+  font-weight: 500;
+  color: var(--cream);
+  margin-bottom: 3px;
 }
 
-.jur-badge {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  padding: 4px 10px;
-  border-radius: 999px;
-  background: var(--green-s);
+.jur-feature-sub {
+  font-size: 12px;
+  color: var(--t3);
+  line-height: 1.55;
+}
+
+/* ── cross-border mini card ── */
+.crossborder-card {
+  background: var(--bg1);
+  border: 1px solid var(--b1);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  transition: border-color 300ms;
+}
+
+.crossborder-card:hover {
+  border-color: var(--b2);
+}
+
+.crossborder-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.crossborder-flags {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.crossborder-arrow {
+  font-size: 14px;
   color: var(--green);
-  border: 1px solid rgba(17, 182, 122, 0.18);
-  white-space: nowrap;
+  opacity: 0.7;
 }
 
 /* ── final cta ── */
@@ -999,8 +1067,28 @@ button {
     grid-template-columns: 1fr 1fr;
   }
 
-  .jur-desc {
-    display: none;
+  .jur-detail-card {
+    padding: 20px;
+  }
+
+  .jur-detail-head {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .jur-features-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .crossborder-card {
+    padding: 16px;
+  }
+
+  .crossborder-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
   }
 
   .trust-row {
