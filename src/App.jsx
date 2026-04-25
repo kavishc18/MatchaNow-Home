@@ -1,159 +1,151 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
-import { motion, useMotionValue, useSpring, AnimatePresence } from 'framer-motion'
-import { ArrowRight, TrendingUp, Shield, Zap, Globe } from 'lucide-react'
+import { useState, useEffect, useRef } from 'react'
+import { motion } from 'framer-motion'
 import {
-  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-  PieChart, Pie, Cell, BarChart, Bar,
+  ArrowRight, TrendingUp, Zap, Globe, Upload,
+  Cpu, CheckCircle, FileText, RefreshCw, BarChart2,
+} from 'lucide-react'
+import {
+  AreaChart, Area, XAxis, YAxis, CartesianGrid,
+  Tooltip, ResponsiveContainer,
 } from 'recharts'
 
 const CALENDLY = 'https://calendly.com/matchanow-org/20-minute-meeting'
 
-/* ─── Chart Data ─── */
-const MONTHLY_DATA = [
-  { month: 'Jan', india: 42, us: 38 },
-  { month: 'Feb', india: 48, us: 41 },
-  { month: 'Mar', india: 55, us: 47 },
-  { month: 'Apr', india: 51, us: 52 },
-  { month: 'May', india: 63, us: 58 },
-  { month: 'Jun', india: 71, us: 62 },
-  { month: 'Jul', india: 68, us: 69 },
-  { month: 'Aug', india: 79, us: 74 },
-  { month: 'Sep', india: 85, us: 78 },
-  { month: 'Oct', india: 91, us: 83 },
-  { month: 'Nov', india: 96, us: 89 },
-  { month: 'Dec', india: 100, us: 94 },
+/* ─── Chart data ─── */
+const TIME_SAVED_DATA = [
+  { clients: '5',  manual: 30,  matcha: 5  },
+  { clients: '10', manual: 60,  matcha: 8  },
+  { clients: '20', manual: 120, matcha: 14 },
+  { clients: '30', manual: 180, matcha: 19 },
+  { clients: '40', manual: 240, matcha: 23 },
+  { clients: '50', manual: 300, matcha: 27 },
 ]
 
-const STATUS_DATA = [
-  { name: 'Matched', value: 847, color: '#11B67A' },
-  { name: 'Review', value: 89, color: '#D4A72C' },
-  { name: 'Mismatch', value: 34, color: '#E5534B' },
-]
-
-const WEEKLY_VOLUME = [
-  { day: 'Mon', invoices: 124 },
-  { day: 'Tue', invoices: 156 },
-  { day: 'Wed', invoices: 142 },
-  { day: 'Thu', invoices: 189 },
-  { day: 'Fri', invoices: 167 },
-  { day: 'Sat', invoices: 78 },
-  { day: 'Sun', invoices: 45 },
-]
-
-/* ─── Reconciliation Data (US + India only) ─── */
-const JURIS = [
+/* ─── Engine demo — 3 tab types ─── */
+const TABS = [
   {
-    id: 'india', flag: '🇮🇳', name: 'India', label: 'GST · GSTR-2B',
+    id: 'recon',
+    icon: <RefreshCw size={12} />,
+    name: 'Bank Recon',
+    label: 'Bank vs Ledger · GST',
+    colA: 'Reference',
+    colB: 'Counterparty',
+    colC: 'Amount',
     curr: '₹',
     rows: [
-      { id: 'GST-2024-1102', supplier: 'Tata Steel Ltd', amt: '4,85,200', status: 'matched' },
-      { id: 'GST-2024-1103', supplier: 'Reliance Industries', amt: '12,34,500', status: 'mismatch' },
-      { id: 'GST-2024-1104', supplier: 'Infosys BPM Ltd', amt: '2,18,000', status: 'matched' },
-      { id: 'GST-2024-1105', supplier: 'Mahindra Logistics', amt: '97,650', status: 'review' },
-      { id: 'GST-2024-1106', supplier: 'Wipro Enterprises', amt: '3,42,800', status: 'matched' },
+      { id: 'GST-2024-1102', b: 'Tata Steel Ltd',      c: '4,85,200',  status: 'matched'  },
+      { id: 'GST-2024-1103', b: 'Reliance Industries', c: '12,34,500', status: 'mismatch' },
+      { id: 'GST-2024-1104', b: 'Infosys BPM Ltd',     c: '2,18,000',  status: 'matched'  },
+      { id: 'GST-2024-1105', b: 'Mahindra Logistics',  c: '97,650',    status: 'review'   },
+      { id: 'GST-2024-1106', b: 'Wipro Enterprises',   c: '3,42,800',  status: 'matched'  },
     ],
   },
   {
-    id: 'us', flag: '🇺🇸', name: 'United States', label: 'Sales Tax · Nexus',
-    curr: '$',
+    id: 'tax',
+    icon: <FileText size={12} />,
+    name: 'Tax Matching',
+    label: 'Invoices vs GSTR-2B · ITC',
+    colA: 'Invoice ID',
+    colB: 'Vendor',
+    colC: 'ITC Claim',
+    curr: '₹',
     rows: [
-      { id: 'ST-2024-0078', supplier: 'Walmart Inc.', amt: '24,500', status: 'matched' },
-      { id: 'ST-2024-0079', supplier: 'Amazon Services LLC', amt: '11,230', status: 'review' },
-      { id: 'ST-2024-0080', supplier: 'Caterpillar Inc.', amt: '45,800', status: 'matched' },
-      { id: 'ST-2024-0081', supplier: 'Deere & Company', amt: '8,920', status: 'matched' },
-      { id: 'ST-2024-0082', supplier: 'FedEx Corporation', amt: '6,340', status: 'mismatch' },
+      { id: 'INV-5501', b: 'Bajaj Auto Ltd',       c: '62,400',  status: 'matched'  },
+      { id: 'INV-5502', b: 'Hindustan Unilever',   c: '1,18,200',status: 'mismatch' },
+      { id: 'INV-5503', b: 'Sun Pharma',            c: '34,800',  status: 'matched'  },
+      { id: 'INV-5504', b: 'Tech Mahindra',         c: '2,76,500',status: 'review'   },
+      { id: 'INV-5505', b: 'Asian Paints Ltd',      c: '89,100',  status: 'matched'  },
+    ],
+  },
+  {
+    id: 'reports',
+    icon: <BarChart2 size={12} />,
+    name: 'Report Gen',
+    label: 'Monthly reports · Auto-prepared',
+    colA: 'Client',
+    colB: 'Report type',
+    colC: 'Period',
+    curr: '',
+    rows: [
+      { id: 'Sharma & Co',     b: 'Monthly P&L',       c: 'Mar 2025', status: 'matched'  },
+      { id: 'Patel Ventures',  b: 'GSTR Summary',      c: 'Mar 2025', status: 'matched'  },
+      { id: 'ABC Corporation', b: 'Bank Reconciliation',c: 'Mar 2025', status: 'review'   },
+      { id: 'XYZ Limited',     b: 'Vendor Aging',      c: 'Mar 2025', status: 'matched'  },
+      { id: 'Kumar Associates',b: 'TDS Summary',       c: 'Mar 2025', status: 'matched'  },
     ],
   },
 ]
 
-const S = {
-  matched: { label: 'Matched', dot: '#11B67A' },
-  mismatch: { label: 'Mismatch', dot: '#E5534B' },
-  review: { label: 'Review', dot: '#D4A72C' },
+/* Status labels vary by tab type */
+const STATUS_CFG = {
+  recon:   { matched: { label: 'Matched',    dot: '#11B67A' }, mismatch: { label: 'Mismatch',    dot: '#E5534B' }, review: { label: 'Review',      dot: '#D4A72C' } },
+  tax:     { matched: { label: 'Verified',   dot: '#11B67A' }, mismatch: { label: 'Discrepancy', dot: '#E5534B' }, review: { label: 'Pending',      dot: '#D4A72C' } },
+  reports: { matched: { label: 'Ready',      dot: '#11B67A' }, mismatch: { label: 'Error',       dot: '#E5534B' }, review: { label: 'Generating',   dot: '#D4A72C' } },
 }
 
-/* ─── Custom Tooltips ─── */
+/* ─── Tooltip ─── */
 function ChartTooltip({ active, payload, label }) {
   if (!active || !payload?.length) return null
   return (
     <div className="chart-tooltip">
-      <p className="chart-tooltip-label">{label}</p>
+      <p className="chart-tooltip-label">{label} clients</p>
       {payload.map((p, i) => (
         <p key={i} className="chart-tooltip-val" style={{ color: p.color }}>
-          {p.name}: {p.value}%
+          {p.name}: {p.value} hrs/mo
         </p>
       ))}
     </div>
   )
 }
 
-function BarTooltip({ active, payload, label }) {
-  if (!active || !payload?.length) return null
-  return (
-    <div className="chart-tooltip">
-      <p className="chart-tooltip-label">{label}</p>
-      <p className="chart-tooltip-val">{payload[0].value} invoices</p>
-    </div>
-  )
-}
-
-/* ─── Donut Center Label ─── */
-function DonutCenter({ total }) {
-  return (
-    <text x="50%" y="50%" textAnchor="middle" dominantBaseline="central">
-      <tspan x="50%" dy="-8" fill="#f4efe6" fontSize="22" fontWeight="600">{total}</tspan>
-      <tspan x="50%" dy="22" fill="#7d7770" fontSize="11" fontWeight="400">Total</tspan>
-    </text>
-  )
-}
-
-/* ─── Fade in on scroll ─── */
+/* ─── Fade on scroll ─── */
 function F({ children, delay = 0 }) {
   const ref = useRef(null)
   const [v, setV] = useState(false)
   useEffect(() => {
-    const o = new IntersectionObserver(([e]) => { if (e.isIntersecting) setV(true) }, { rootMargin: '-30px' })
+    const o = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) setV(true) },
+      { rootMargin: '-20px' }
+    )
     if (ref.current) o.observe(ref.current)
     return () => o.disconnect()
   }, [])
   return (
     <div ref={ref} style={{
       opacity: v ? 1 : 0,
-      transform: v ? 'none' : 'translateY(12px)',
+      transform: v ? 'none' : 'translateY(14px)',
       transition: `opacity 0.55s ${delay}s, transform 0.55s ${delay}s`,
-    }}>{children}</div>
+    }}>
+      {children}
+    </div>
   )
 }
 
-/* ─── Reconciliation Table ─── */
-function ReconTable() {
-  const [jIdx, setJIdx] = useState(0)
+/* ─── Engine Demo ─── */
+function EngineDemo() {
+  const [tIdx, setTIdx]     = useState(0)
   const [resolved, setResolved] = useState(new Set())
-  const [lit, setLit] = useState(null)
-  const [fade, setFade] = useState(true)
+  const [lit, setLit]       = useState(null)
+  const [fade, setFade]     = useState(true)
 
-  const j = JURIS[jIdx]
+  const tab = TABS[tIdx]
+  const sCfg = STATUS_CFG[tab.id]
 
   useEffect(() => {
-    setFade(true)
-    setResolved(new Set())
-    setLit(null)
-
+    setFade(true); setResolved(new Set()); setLit(null)
     const t1 = setTimeout(() => {
-      const idx = j.rows.findIndex(r => r.status === 'mismatch')
+      const idx = tab.rows.findIndex(r => r.status === 'mismatch')
       if (idx !== -1) {
         setLit(idx)
         setTimeout(() => { setResolved(new Set([idx])); setLit(null) }, 650)
       }
     }, 1800)
-
     const t2 = setTimeout(() => {
       setFade(false)
-      setTimeout(() => setJIdx(p => (p + 1) % JURIS.length), 260)
-    }, 4600)
-
+      setTimeout(() => setTIdx(p => (p + 1) % TABS.length), 260)
+    }, 4800)
     return () => { clearTimeout(t1); clearTimeout(t2) }
-  }, [jIdx])
+  }, [tIdx])
 
   const st = (row, i) => resolved.has(i) ? 'matched' : row.status
 
@@ -161,17 +153,19 @@ function ReconTable() {
     <div className="rw">
       <div className="rw-chrome">
         <div className="rw-dots">
-          <span className="dot dot-r" /><span className="dot dot-y" /><span className="dot dot-g" />
+          <span className="dot dot-r" />
+          <span className="dot dot-y" />
+          <span className="dot dot-g" />
         </div>
         <div className="rw-title">
           <span className="live-pip" />
-          Reconciliation Engine
+          Matcha Engine
         </div>
         <div className="rw-tabs">
-          {JURIS.map((jj, i) => (
-            <button key={jj.id} onClick={() => setJIdx(i)}
-              className={`rw-tab${i === jIdx ? ' on' : ''}`}>
-              {jj.flag} {jj.name}
+          {TABS.map((t, i) => (
+            <button key={t.id} onClick={() => setTIdx(i)}
+              className={`rw-tab${i === tIdx ? ' on' : ''}`}>
+              {t.icon} {t.name}
             </button>
           ))}
         </div>
@@ -181,26 +175,25 @@ function ReconTable() {
         <table className="rt">
           <thead>
             <tr>
-              <th>Invoice</th>
-              <th className="rt-hide">Supplier</th>
-              <th style={{ textAlign: 'right' }}>Amount</th>
+              <th>{tab.colA}</th>
+              <th className="rt-hide">{tab.colB}</th>
+              <th style={{ textAlign: 'right' }}>{tab.colC}</th>
               <th style={{ textAlign: 'center' }}>Status</th>
             </tr>
           </thead>
           <tbody>
-            {j.rows.map((row, i) => {
-              const s = st(row, i)
-              const cfg = S[s]
+            {tab.rows.map((row, i) => {
+              const s   = st(row, i)
+              const cfg = sCfg[s]
               return (
-                <motion.tr key={`${j.id}-${row.id}`}
+                <motion.tr key={`${tab.id}-${i}`}
                   animate={{ background: lit === i ? 'rgba(17,182,122,0.07)' : 'transparent' }}
                   transition={{ duration: 0.3 }}>
                   <td className="mono-c">{row.id}</td>
-                  <td className="rt-hide sup-c">{row.supplier}</td>
-                  <td className="mono-c amt-c">{j.curr}{row.amt}</td>
+                  <td className="rt-hide sup-c">{row.b}</td>
+                  <td className="mono-c amt-c">{tab.curr}{row.c}</td>
                   <td style={{ textAlign: 'center' }}>
-                    <motion.span
-                      key={s}
+                    <motion.span key={s}
                       initial={{ opacity: 0.5, scale: 0.94 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.22 }}
@@ -215,8 +208,11 @@ function ReconTable() {
           </tbody>
         </table>
         <div className="rw-foot">
-          <span>{j.label}</span>
-          <span>{j.rows.filter((r, i) => st(r, i) === 'matched').length}/{j.rows.length} matched</span>
+          <span>{tab.label}</span>
+          <span>
+            {tab.rows.filter((r, i) => st(r, i) === 'matched').length}/{tab.rows.length}{' '}
+            {tab.id === 'reports' ? 'ready' : 'matched'}
+          </span>
         </div>
       </motion.div>
     </div>
@@ -235,7 +231,7 @@ function Nav() {
     <nav className={`nav${up ? ' nav-up' : ''}`}>
       <span className="ln">Matcha</span>
       <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn-cta">
-        Book a call <ArrowRight size={13} />
+        Book a demo <ArrowRight size={13} />
       </a>
     </nav>
   )
@@ -247,26 +243,26 @@ function Hero() {
     <section className="hero">
       <div className="con">
         <F>
-          <p className="eyebrow">AI-native accounting firm</p>
+          <p className="eyebrow">AI automation suite for accounting firms</p>
         </F>
         <F delay={0.05}>
           <h1 className="h1">
-            Your books closed<br className="desk-br" /> before Monday.
+            Automate the grunt work<br className="desk-br" /> your firm runs on.
           </h1>
         </F>
         <F delay={0.09}>
           <p className="sub">
-            Cross-border reconciliation, filings, and bookkeeping across India and US — done in hours, not weeks.
+            Reconciliation, tax matching, report generation, data cleanup. Your team does all of it manually, every month, for every client. Matcha automates the lot.
           </p>
         </F>
         <F delay={0.13}>
           <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn-cta btn-lg">
-            Book a free call <ArrowRight size={15} />
+            Book a free demo <ArrowRight size={15} />
           </a>
         </F>
         <F delay={0.18}>
           <div className="table-shell">
-            <ReconTable />
+            <EngineDemo />
           </div>
         </F>
       </div>
@@ -276,15 +272,17 @@ function Hero() {
 
 /* ─── Stats ─── */
 function Stats() {
+  const stats = [
+    { val: '< 6 min', label: 'Average reconciliation time' },
+    { val: '99%',     label: 'Match accuracy across all task types' },
+    { val: '50+',     label: 'Source formats supported' },
+    { val: '10×',     label: 'Faster than manual spreadsheet work' },
+  ]
   return (
     <div className="stats-band">
       <div className="con">
-        <div className="stats-row">
-          {[
-            { val: '99%', label: 'Filing accuracy' },
-            { val: '1 day', label: 'Onboarding time' },
-            { val: '2', label: 'Jurisdictions live' },
-          ].map((s, i) => (
+        <div className="stats-row-4">
+          {stats.map((s, i) => (
             <F key={s.label} delay={i * 0.04}>
               <div className="stat">
                 <span className="sv">{s.val}</span>
@@ -298,179 +296,53 @@ function Stats() {
   )
 }
 
-/* ─── Analytics Section ─── */
-function Analytics() {
-  const [animReady, setAnimReady] = useState(false)
-  useEffect(() => {
-    const t = setTimeout(() => setAnimReady(true), 300)
-    return () => clearTimeout(t)
-  }, [])
+/* ─── Suite ─── */
+const SUITE = [
+  {
+    icon: <RefreshCw size={20} />,
+    title: 'Reconciliation',
+    tag: 'Bank · Vendor · Inter-company · GST',
+    desc: 'Upload your bank export and ledger. Matcha standardises both, matches every record, and flags what doesn\'t line up — in minutes, not hours.',
+  },
+  {
+    icon: <FileText size={20} />,
+    title: 'Tax matching',
+    tag: 'GSTR-2B · ITC · TDS · Sales Tax',
+    desc: 'Match invoice data against portal records before filing. Catch ITC discrepancies, flag missing invoices, and surface errors before they become penalties.',
+  },
+  {
+    icon: <BarChart2 size={20} />,
+    title: 'Report generation',
+    tag: 'P&L · Vendor aging · Monthly close',
+    desc: 'Feed in raw data; get formatted monthly reports out. No manual formatting, no copy-paste from Excel. Ready to send to clients.',
+  },
+  {
+    icon: <Cpu size={20} />,
+    title: 'Data standardisation',
+    tag: 'Tally · QuickBooks · Xero · Any CSV',
+    desc: 'Your clients send data in a dozen different formats. Matcha reads any schema, normalises it, and makes it usable — regardless of source.',
+  },
+]
 
-  const total = STATUS_DATA.reduce((a, b) => a + b.value, 0)
-
+function Suite() {
   return (
-    <section className="analytics-sec">
+    <section className="suite-sec">
       <div className="con">
         <F>
-          <p className="sec-label">Real-time analytics</p>
-          <h2 className="sec-h">Everything at a glance</h2>
-          <p className="sec-sub">Track reconciliation accuracy, invoice volume, and filing status across any jurisdiction.</p>
+          <p className="sec-label">What we automate</p>
+          <h2 className="sec-h">Everything your juniors do manually, automated.</h2>
+          <p className="sec-sub">
+            We started with reconciliation because it's the most painful. We're building outward to cover every repetitive task inside an accounting firm.
+          </p>
         </F>
-
-        <div className="chart-grid">
-          <F delay={0.05}>
-            <div className="chart-card chart-card-wide">
-              <div className="chart-card-head">
-                <div>
-                  <h3 className="chart-card-title">Reconciliation accuracy</h3>
-                  <p className="chart-card-sub">Monthly match rate by jurisdiction</p>
-                </div>
-                <span className="chart-badge">
-                  <TrendingUp size={12} /> +12% this quarter
-                </span>
-              </div>
-              <div className="chart-area-wrap">
-                <ResponsiveContainer width="100%" height={240}>
-                  <AreaChart data={MONTHLY_DATA} margin={{ top: 8, right: 8, left: -20, bottom: 0 }}>
-                    <defs>
-                      <linearGradient id="gradIndia" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#11B67A" stopOpacity={0.25} />
-                        <stop offset="100%" stopColor="#11B67A" stopOpacity={0} />
-                      </linearGradient>
-                      <linearGradient id="gradUS" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#635BFF" stopOpacity={0.2} />
-                        <stop offset="100%" stopColor="#635BFF" stopOpacity={0} />
-                      </linearGradient>
-                    </defs>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#333339" vertical={false} />
-                    <XAxis dataKey="month" tick={{ fill: '#7d7770', fontSize: 11 }} axisLine={false} tickLine={false} />
-                    <YAxis tick={{ fill: '#7d7770', fontSize: 11 }} axisLine={false} tickLine={false} domain={[30, 105]} tickFormatter={v => `${v}%`} />
-                    <Tooltip content={<ChartTooltip />} />
-                    <Area
-                      type="monotone" dataKey="india" name="🇮🇳 India"
-                      stroke="#11B67A" strokeWidth={2}
-                      fill="url(#gradIndia)" fillOpacity={1}
-                      dot={false} activeDot={{ r: 4, fill: '#11B67A', stroke: '#1e1e22', strokeWidth: 2 }}
-                      isAnimationActive={animReady} animationDuration={1200}
-                    />
-                    <Area
-                      type="monotone" dataKey="us" name="🇺🇸 United States"
-                      stroke="#635BFF" strokeWidth={2}
-                      fill="url(#gradUS)" fillOpacity={1}
-                      dot={false} activeDot={{ r: 4, fill: '#635BFF', stroke: '#1e1e22', strokeWidth: 2 }}
-                      isAnimationActive={animReady} animationDuration={1200} animationBegin={200}
-                    />
-                  </AreaChart>
-                </ResponsiveContainer>
-              </div>
-              <div className="chart-legend">
-                <span className="chart-legend-item"><span className="chart-legend-dot" style={{ background: '#11B67A' }} /> India</span>
-                <span className="chart-legend-item"><span className="chart-legend-dot" style={{ background: '#635BFF' }} /> United States</span>
-              </div>
-            </div>
-          </F>
-
-          <F delay={0.1}>
-            <div className="chart-card">
-              <div className="chart-card-head">
-                <div>
-                  <h3 className="chart-card-title">Invoice status</h3>
-                  <p className="chart-card-sub">Current period breakdown</p>
-                </div>
-              </div>
-              <div className="donut-wrap">
-                <ResponsiveContainer width="100%" height={200}>
-                  <PieChart>
-                    <Pie
-                      data={STATUS_DATA}
-                      cx="50%" cy="50%"
-                      innerRadius={60} outerRadius={82}
-                      paddingAngle={3}
-                      dataKey="value"
-                      stroke="none"
-                      isAnimationActive={animReady} animationDuration={1000}
-                    >
-                      {STATUS_DATA.map((entry, i) => (
-                        <Cell key={i} fill={entry.color} />
-                      ))}
-                    </Pie>
-                    <DonutCenter total={total} />
-                  </PieChart>
-                </ResponsiveContainer>
-              </div>
-              <div className="donut-legend">
-                {STATUS_DATA.map(d => (
-                  <div key={d.name} className="donut-legend-row">
-                    <span className="donut-legend-dot" style={{ background: d.color }} />
-                    <span className="donut-legend-name">{d.name}</span>
-                    <span className="donut-legend-val">{d.value}</span>
-                    <span className="donut-legend-pct">{((d.value / total) * 100).toFixed(1)}%</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </F>
-        </div>
-
-        <F delay={0.15}>
-          <div className="chart-card-full">
-            <div className="chart-card-head">
-              <div>
-                <h3 className="chart-card-title">Weekly invoice volume</h3>
-                <p className="chart-card-sub">Invoices processed per day</p>
-              </div>
-              <span className="chart-badge-subtle">This week</span>
-            </div>
-            <div className="chart-area-wrap">
-              <ResponsiveContainer width="100%" height={180}>
-                <BarChart data={WEEKLY_VOLUME} margin={{ top: 8, right: 8, left: -20, bottom: 0 }} barCategoryGap="30%">
-                  <defs>
-                    <linearGradient id="gradBar" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#11B67A" stopOpacity={0.9} />
-                      <stop offset="100%" stopColor="#11B67A" stopOpacity={0.4} />
-                    </linearGradient>
-                  </defs>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#333339" vertical={false} />
-                  <XAxis dataKey="day" tick={{ fill: '#7d7770', fontSize: 11 }} axisLine={false} tickLine={false} />
-                  <YAxis tick={{ fill: '#7d7770', fontSize: 11 }} axisLine={false} tickLine={false} />
-                  <Tooltip content={<BarTooltip />} cursor={{ fill: 'rgba(17,182,122,0.04)' }} />
-                  <Bar
-                    dataKey="invoices" fill="url(#gradBar)"
-                    radius={[6, 6, 0, 0]}
-                    isAnimationActive={animReady} animationDuration={800}
-                  />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
-        </F>
-      </div>
-    </section>
-  )
-}
-
-/* ─── Features ─── */
-function Features() {
-  const items = [
-    { icon: <Shield size={20} />, title: 'Compliance-first', desc: 'Built for GST, GSTR-2B, sales tax nexus, and 1099 — always current with latest regulations.' },
-    { icon: <Zap size={20} />, title: 'Instant reconciliation', desc: 'AI matches invoices against government records in seconds. Mismatches flagged automatically.' },
-    { icon: <Globe size={20} />, title: 'India + US coverage', desc: 'One platform for cross-border operations. Unified dashboard, jurisdiction-specific logic.' },
-    { icon: <TrendingUp size={20} />, title: 'Real-time insights', desc: 'Live dashboards with match rates, filing status, and anomaly detection.' },
-  ]
-  return (
-    <section className="features-sec">
-      <div className="con">
-        <F>
-          <p className="sec-label">Why Matcha</p>
-          <h2 className="sec-h">Built for modern finance teams</h2>
-        </F>
-        <div className="features-grid">
-          {items.map((item, i) => (
-            <F key={item.title} delay={i * 0.06}>
-              <div className="feature-card">
-                <div className="feature-icon">{item.icon}</div>
-                <h3 className="feature-title">{item.title}</h3>
-                <p className="feature-desc">{item.desc}</p>
+        <div className="suite-grid">
+          {SUITE.map((s, i) => (
+            <F key={s.title} delay={i * 0.06}>
+              <div className="suite-card">
+                <div className="suite-icon">{s.icon}</div>
+                <p className="suite-tag">{s.tag}</p>
+                <h3 className="suite-title">{s.title}</h3>
+                <p className="suite-desc">{s.desc}</p>
               </div>
             </F>
           ))}
@@ -480,126 +352,103 @@ function Features() {
   )
 }
 
-/* ─── Cross-border flow data ─── */
-const CROSSBORDER_DATA = [
-  { month: 'Jan', flow: 12 },
-  { month: 'Feb', flow: 18 },
-  { month: 'Mar', flow: 24 },
-  { month: 'Apr', flow: 21 },
-  { month: 'May', flow: 32 },
-  { month: 'Jun', flow: 38 },
-  { month: 'Jul', flow: 35 },
-  { month: 'Aug', flow: 44 },
-  { month: 'Sep', flow: 52 },
-  { month: 'Oct', flow: 58 },
-  { month: 'Nov', flow: 63 },
-  { month: 'Dec', flow: 71 },
+/* ─── How It Works ─── */
+const STEPS = [
+  {
+    num: '01',
+    icon: <Upload size={20} />,
+    title: 'Upload whatever you have',
+    desc: 'CSV, PDF, bank export, GST portal download, Tally XML, vendor statement — any format, any layout. No ERP. No setup call. No IT team.',
+  },
+  {
+    num: '02',
+    icon: <Cpu size={20} />,
+    title: 'AI reads, standardises, and processes',
+    desc: 'The engine detects the schema, normalises the data, runs the matching or generation logic, and flags every exception — automatically.',
+  },
+  {
+    num: '03',
+    icon: <CheckCircle size={20} />,
+    title: 'Clean output, exceptions surfaced',
+    desc: 'What took junior staff 3–6 hours takes minutes. Your team reviews exceptions, not raw data. No rework unless something is genuinely wrong.',
+  },
 ]
 
-/* ─── Jurisdictions — separate cards + cross-border section ─── */
-const INDIA_FEATURES = [
-  { title: 'GSTR-2B reconciliation', sub: 'Auto-match invoices against government records.' },
-  { title: 'ITC optimisation', sub: 'Maximise input tax credits automatically.' },
-  { title: 'TDS & advance tax', sub: 'Quarterly filings, computed and filed on time.' },
-  { title: 'E-invoicing', sub: 'IRN and e-way bills from your ERP data.' },
-]
-
-const US_FEATURES = [
-  { title: 'Nexus monitoring', sub: 'Track thresholds across every state.' },
-  { title: 'Sales tax filing', sub: 'Returns filed wherever you have obligations.' },
-  { title: '1099 processing', sub: 'Vendor classification and year-end generation.' },
-  { title: 'Exemptions', sub: 'Certificates and use tax handled automatically.' },
-]
-
-function JurCard({ flag, headline, desc, features, delay = 0 }) {
+function HowItWorks() {
   return (
-    <F delay={delay}>
-      <div className="jur-detail-card">
-        <div className="jur-detail-head">
-          <span className="jur-detail-flag">{flag}</span>
-          <div>
-            <h3 className="jur-detail-title">{headline}</h3>
-            <p className="jur-detail-desc">{desc}</p>
-          </div>
-        </div>
-        <div className="jur-features-grid">
-          {features.map((f, i) => (
-            <div key={i} className="jur-feature">
-              <span className="jur-feature-dot" />
-              <div>
-                <p className="jur-feature-title">{f.title}</p>
-                <p className="jur-feature-sub">{f.sub}</p>
+    <section className="steps-sec">
+      <div className="con">
+        <F>
+          <p className="sec-label">How it works</p>
+          <h2 className="sec-h">Upload. Process. Done.</h2>
+          <p className="sec-sub">No integration, no onboarding, no pilot project. Upload your data and get results on the first try.</p>
+        </F>
+        <div className="steps-grid">
+          {STEPS.map((s, i) => (
+            <F key={s.num} delay={i * 0.07}>
+              <div className="step-card">
+                <div className="step-icon">{s.icon}</div>
+                <div className="step-num">{s.num}</div>
+                <h3 className="step-title">{s.title}</h3>
+                <p className="step-desc">{s.desc}</p>
               </div>
-            </div>
+            </F>
           ))}
         </div>
       </div>
-    </F>
+    </section>
   )
 }
 
-function Jurisdictions() {
+/* ─── ROI Chart ─── */
+function ROIChart() {
+  const [ready, setReady] = useState(false)
+  useEffect(() => { const t = setTimeout(() => setReady(true), 300); return () => clearTimeout(t) }, [])
   return (
-    <section className="jur-sec">
+    <section className="roi-sec">
       <div className="con">
         <F>
-          <p className="sec-label">Where we operate</p>
-          <h2 className="sec-h">One engine. Any jurisdiction.</h2>
-          <p className="sec-sub">Built to scale across jurisdictions.</p>
-        </F>
-
-        <div className="jur-cards-stack">
-          <JurCard
-            flag="🇮🇳"
-            headline="India"
-            desc="GST reconciliation, ITC claims, TDS, e-invoicing."
-            features={INDIA_FEATURES}
-            delay={0.05}
-          />
-          <JurCard
-            flag="🇺🇸"
-            headline="United States"
-            desc="Multi-state sales tax, nexus tracking, 1099s."
-            features={US_FEATURES}
-            delay={0.1}
-          />
-        </div>
-
-        {/* Cross-border mini section */}
-        <F delay={0.15}>
-          <div className="crossborder-card">
-            <div className="crossborder-head">
-              <div className="crossborder-flags">
-                <span>🇮🇳</span>
-                <span className="crossborder-arrow">⇄</span>
-                <span>🇺🇸</span>
-              </div>
+          <div className="chart-card-full roi-card">
+            <div className="chart-card-head">
               <div>
-                <h3 className="chart-card-title">Cross-border flow</h3>
-                <p className="chart-card-sub">Monthly reconciled transactions between India and US</p>
+                <h3 className="chart-card-title">Staff hours spent on manual work per month</h3>
+                <p className="chart-card-sub">As your client base grows — manual labour vs Matcha</p>
               </div>
+              <span className="chart-badge">
+                <TrendingUp size={12} /> 10× faster at 50 clients
+              </span>
             </div>
             <div className="chart-area-wrap">
-              <ResponsiveContainer width="100%" height={140}>
-                <AreaChart data={CROSSBORDER_DATA} margin={{ top: 8, right: 8, left: -20, bottom: 0 }}>
+              <ResponsiveContainer width="100%" height={220}>
+                <AreaChart data={TIME_SAVED_DATA} margin={{ top: 8, right: 8, left: -20, bottom: 0 }}>
                   <defs>
-                    <linearGradient id="gradCross" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#11B67A" stopOpacity={0.2} />
+                    <linearGradient id="gradManual" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#E5534B" stopOpacity={0.25} />
+                      <stop offset="100%" stopColor="#E5534B" stopOpacity={0} />
+                    </linearGradient>
+                    <linearGradient id="gradMatcha" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#11B67A" stopOpacity={0.25} />
                       <stop offset="100%" stopColor="#11B67A" stopOpacity={0} />
                     </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="3 3" stroke="#333339" vertical={false} />
-                  <XAxis dataKey="month" tick={{ fill: '#7d7770', fontSize: 11 }} axisLine={false} tickLine={false} />
-                  <YAxis tick={{ fill: '#7d7770', fontSize: 11 }} axisLine={false} tickLine={false} />
-                  <Area
-                    type="monotone" dataKey="flow"
-                    stroke="#11B67A" strokeWidth={2}
-                    fill="url(#gradCross)" fillOpacity={1}
-                    dot={false}
-                    activeDot={{ r: 3, fill: '#11B67A', stroke: '#1e1e22', strokeWidth: 2 }}
-                  />
+                  <XAxis dataKey="clients" tick={{ fill: '#7d7770', fontSize: 11 }} axisLine={false} tickLine={false} />
+                  <YAxis tick={{ fill: '#7d7770', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={v => `${v}h`} />
+                  <Tooltip content={<ChartTooltip />} />
+                  <Area type="monotone" dataKey="manual" name="Manual"
+                    stroke="#E5534B" strokeWidth={2} fill="url(#gradManual)"
+                    dot={false} activeDot={{ r: 4, fill: '#E5534B', stroke: '#1e1e22', strokeWidth: 2 }}
+                    isAnimationActive={ready} animationDuration={1200} />
+                  <Area type="monotone" dataKey="matcha" name="Matcha"
+                    stroke="#11B67A" strokeWidth={2} fill="url(#gradMatcha)"
+                    dot={false} activeDot={{ r: 4, fill: '#11B67A', stroke: '#1e1e22', strokeWidth: 2 }}
+                    isAnimationActive={ready} animationDuration={1200} animationBegin={200} />
                 </AreaChart>
               </ResponsiveContainer>
+            </div>
+            <div className="chart-legend">
+              <span className="chart-legend-item"><span className="chart-legend-dot" style={{ background: '#E5534B' }} /> Manual staff hours</span>
+              <span className="chart-legend-item"><span className="chart-legend-dot" style={{ background: '#11B67A' }} /> With Matcha</span>
             </div>
           </div>
         </F>
@@ -608,16 +457,103 @@ function Jurisdictions() {
   )
 }
 
-/* ─── Final CTA ─── */
+
+/* ─── Pricing ─── */
+const PLANS = [
+  {
+    tier:  'Solo',
+    price: '$50',
+    desc:  'For solo practitioners managing up to 20 clients.',
+    features: [
+      'Unlimited reconciliations',
+      'Tax matching & ITC verification',
+      'Any data format — CSV, PDF, portal exports',
+      'Single user',
+      'Email support',
+    ],
+  },
+  {
+    tier:  'Firm',
+    price: '$200',
+    desc:  'For small firms managing up to 50 clients.',
+    features: [
+      'Everything in Solo',
+      'Report generation (P&L, recon, aging)',
+      'Multi-client dashboard',
+      'Up to 5 users',
+      'Priority support',
+    ],
+  },
+  {
+    tier:  'Scale',
+    price: '$500',
+    desc:  'For mid-size firms with 50+ clients and a full team.',
+    features: [
+      'Everything in Firm',
+      'Unlimited clients & users',
+      'Data standardisation pipeline',
+      'Custom integrations on request',
+      'Dedicated onboarding',
+    ],
+  },
+]
+
+function Pricing() {
+  return (
+    <section className="pricing-sec">
+      <div className="con">
+        <F>
+          <p className="sec-label">Pricing</p>
+          <h2 className="sec-h">The labour we replace costs 10–100× our price</h2>
+          <p className="sec-sub">A single complex reconciliation costs $150–500 in staff time. We charge a fraction of that. ROI is immediate.</p>
+        </F>
+        <div className="pricing-grid">
+          {PLANS.map((plan, i) => (
+            <F key={plan.tier} delay={i * 0.07}>
+              <div className="pricing-card">
+                <p className="pricing-tier">{plan.tier}</p>
+                <div className="pricing-price-row">
+                  <span className="pricing-price">{plan.price}</span>
+                  <span className="pricing-period">/ month</span>
+                </div>
+                <p className="pricing-desc">{plan.desc}</p>
+                <ul className="pricing-features-list">
+                  {plan.features.map((f, j) => (
+                    <li key={j} className="pricing-feature-item">
+                      <CheckCircle size={13} className="pricing-check" />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href={CALENDLY} target="_blank" rel="noopener noreferrer"
+                  className={`btn-cta btn-cta-full${plan.featured ? '' : ' btn-outline'}`}>
+                  Get started <ArrowRight size={13} />
+                </a>
+              </div>
+            </F>
+          ))}
+        </div>
+        <F delay={0.25}>
+          <p className="pricing-footnote">
+            Early access pricing. 12 users paid ₹250/task via UPI before we had a payment gateway. We kept pricing intentionally low to validate — moving to monthly SaaS now.
+          </p>
+        </F>
+      </div>
+    </section>
+  )
+}
+
+/* ─── CTA ─── */
 function CTA() {
   return (
     <section className="cta-sec">
-      <div className="con" style={{ textAlign: 'center' }}>
-        <F><h2 className="cta-h">Ready to automate your accounting?</h2></F>
-        <F delay={0.05}><p className="cta-sub">30 minutes.</p></F>
+      <div className="con cta-inner">
+        <F><h2 className="cta-h">Ready to give your team their hours back?</h2></F>
+        <F delay={0.05}><p className="cta-sub">20 minutes. We'll demo live on your actual data.</p></F>
         <F delay={0.09}>
           <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn-cta btn-lg">
-            Book a free call <ArrowRight size={15} />
+            Book a free demo <ArrowRight size={15} />
           </a>
         </F>
       </div>
@@ -632,21 +568,23 @@ function Footer() {
       <span className="ln">Matcha</span>
       <div style={{ display: 'flex', gap: 22 }}>
         <a href="https://www.linkedin.com/company/matchanow/" target="_blank" rel="noopener noreferrer" className="foot-link">LinkedIn</a>
-        <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="foot-link">Book a Call</a>
+        <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="foot-link">Book a demo</a>
       </div>
     </footer>
   )
 }
 
+/* ─── App ─── */
 export default function App() {
   return (
     <>
       <Nav />
       <Hero />
       <Stats />
-      <Analytics />
-      <Features />
-      <Jurisdictions />
+      <Suite />
+      <HowItWorks />
+      <ROIChart />
+      <Pricing />
       <CTA />
       <Footer />
     </>
