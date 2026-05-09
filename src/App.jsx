@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import {
-  ArrowRight, TrendingUp, Zap, Globe, Upload,
+  ArrowRight, TrendingUp, Upload,
   Cpu, CheckCircle, FileText, RefreshCw, BarChart2,
 } from 'lucide-react'
 import {
@@ -13,15 +13,15 @@ const CALENDLY = 'https://calendly.com/matchanow-org/20-minute-meeting'
 
 /* ─── Chart data ─── */
 const TIME_SAVED_DATA = [
-  { clients: '5',  manual: 30,  matcha: 5  },
-  { clients: '10', manual: 60,  matcha: 8  },
+  { clients: '5', manual: 30, matcha: 5 },
+  { clients: '10', manual: 60, matcha: 8 },
   { clients: '20', manual: 120, matcha: 14 },
   { clients: '30', manual: 180, matcha: 19 },
   { clients: '40', manual: 240, matcha: 23 },
   { clients: '50', manual: 300, matcha: 27 },
 ]
 
-/* ─── Engine demo — 3 tab types ─── */
+/* ─── Engine demo — 4 tab types ─── */
 const TABS = [
   {
     id: 'recon',
@@ -33,11 +33,28 @@ const TABS = [
     colC: 'Amount',
     curr: '₹',
     rows: [
-      { id: 'GST-2024-1102', b: 'Tata Steel Ltd',      c: '4,85,200',  status: 'matched'  },
+      { id: 'GST-2024-1102', b: 'Tata Steel Ltd', c: '4,85,200', status: 'matched' },
       { id: 'GST-2024-1103', b: 'Reliance Industries', c: '12,34,500', status: 'mismatch' },
-      { id: 'GST-2024-1104', b: 'Infosys BPM Ltd',     c: '2,18,000',  status: 'matched'  },
-      { id: 'GST-2024-1105', b: 'Mahindra Logistics',  c: '97,650',    status: 'review'   },
-      { id: 'GST-2024-1106', b: 'Wipro Enterprises',   c: '3,42,800',  status: 'matched'  },
+      { id: 'GST-2024-1104', b: 'Infosys BPM Ltd', c: '2,18,000', status: 'matched' },
+      { id: 'GST-2024-1105', b: 'Mahindra Logistics', c: '97,650', status: 'review' },
+      { id: 'GST-2024-1106', b: 'Wipro Enterprises', c: '3,42,800', status: 'matched' },
+    ],
+  },
+  {
+    id: 'us-recon',
+    icon: <RefreshCw size={12} />,
+    name: 'US Recon',
+    label: 'Bank vs Ledger · USD',
+    colA: 'Reference',
+    colB: 'Counterparty',
+    colC: 'Amount',
+    curr: '$',
+    rows: [
+      { id: 'CHK-2025-0412', b: 'Acme Corp', c: '12,450.00', status: 'matched' },
+      { id: 'CHK-2025-0413', b: 'Global Logistics LLC', c: '8,920.50', status: 'mismatch' },
+      { id: 'CHK-2025-0414', b: 'Tech Solutions Inc', c: '5,200.00', status: 'matched' },
+      { id: 'CHK-2025-0415', b: 'Office Supplies Co', c: '1,875.25', status: 'review' },
+      { id: 'CHK-2025-0416', b: 'Consulting Partners', c: '15,600.00', status: 'matched' },
     ],
   },
   {
@@ -50,11 +67,11 @@ const TABS = [
     colC: 'ITC Claim',
     curr: '₹',
     rows: [
-      { id: 'INV-5501', b: 'Bajaj Auto Ltd',       c: '62,400',  status: 'matched'  },
-      { id: 'INV-5502', b: 'Hindustan Unilever',   c: '1,18,200',status: 'mismatch' },
-      { id: 'INV-5503', b: 'Sun Pharma',            c: '34,800',  status: 'matched'  },
-      { id: 'INV-5504', b: 'Tech Mahindra',         c: '2,76,500',status: 'review'   },
-      { id: 'INV-5505', b: 'Asian Paints Ltd',      c: '89,100',  status: 'matched'  },
+      { id: 'INV-5501', b: 'Bajaj Auto Ltd', c: '62,400', status: 'matched' },
+      { id: 'INV-5502', b: 'Hindustan Unilever', c: '1,18,200', status: 'mismatch' },
+      { id: 'INV-5503', b: 'Sun Pharma', c: '34,800', status: 'matched' },
+      { id: 'INV-5504', b: 'Tech Mahindra', c: '2,76,500', status: 'review' },
+      { id: 'INV-5505', b: 'Asian Paints Ltd', c: '89,100', status: 'matched' },
     ],
   },
   {
@@ -67,20 +84,21 @@ const TABS = [
     colC: 'Period',
     curr: '',
     rows: [
-      { id: 'Sharma & Co',     b: 'Monthly P&L',       c: 'Mar 2025', status: 'matched'  },
-      { id: 'Patel Ventures',  b: 'GSTR Summary',      c: 'Mar 2025', status: 'matched'  },
-      { id: 'ABC Corporation', b: 'Bank Reconciliation',c: 'Mar 2025', status: 'review'   },
-      { id: 'XYZ Limited',     b: 'Vendor Aging',      c: 'Mar 2025', status: 'matched'  },
-      { id: 'Kumar Associates',b: 'TDS Summary',       c: 'Mar 2025', status: 'matched'  },
+      { id: 'Sharma & Co', b: 'Monthly P&L', c: 'Mar 2025', status: 'matched' },
+      { id: 'Patel Ventures', b: 'GSTR Summary', c: 'Mar 2025', status: 'matched' },
+      { id: 'ABC Corporation', b: 'Bank Reconciliation', c: 'Mar 2025', status: 'review' },
+      { id: 'XYZ Limited', b: 'Vendor Aging', c: 'Mar 2025', status: 'matched' },
+      { id: 'Kumar Associates', b: 'TDS Summary', c: 'Mar 2025', status: 'matched' },
     ],
   },
 ]
 
 /* Status labels vary by tab type */
 const STATUS_CFG = {
-  recon:   { matched: { label: 'Matched',    dot: '#11B67A' }, mismatch: { label: 'Mismatch',    dot: '#E5534B' }, review: { label: 'Review',      dot: '#D4A72C' } },
-  tax:     { matched: { label: 'Verified',   dot: '#11B67A' }, mismatch: { label: 'Discrepancy', dot: '#E5534B' }, review: { label: 'Pending',      dot: '#D4A72C' } },
-  reports: { matched: { label: 'Ready',      dot: '#11B67A' }, mismatch: { label: 'Error',       dot: '#E5534B' }, review: { label: 'Generating',   dot: '#D4A72C' } },
+  recon: { matched: { label: 'Matched', dot: '#11B67A' }, mismatch: { label: 'Mismatch', dot: '#E5534B' }, review: { label: 'Review', dot: '#D4A72C' } },
+  'us-recon': { matched: { label: 'Matched', dot: '#11B67A' }, mismatch: { label: 'Mismatch', dot: '#E5534B' }, review: { label: 'Review', dot: '#D4A72C' } },
+  tax: { matched: { label: 'Verified', dot: '#11B67A' }, mismatch: { label: 'Discrepancy', dot: '#E5534B' }, review: { label: 'Pending', dot: '#D4A72C' } },
+  reports: { matched: { label: 'Ready', dot: '#11B67A' }, mismatch: { label: 'Error', dot: '#E5534B' }, review: { label: 'Generating', dot: '#D4A72C' } },
 }
 
 /* ─── Tooltip ─── */
@@ -123,10 +141,10 @@ function F({ children, delay = 0 }) {
 
 /* ─── Engine Demo ─── */
 function EngineDemo() {
-  const [tIdx, setTIdx]     = useState(0)
+  const [tIdx, setTIdx] = useState(0)
   const [resolved, setResolved] = useState(new Set())
-  const [lit, setLit]       = useState(null)
-  const [fade, setFade]     = useState(true)
+  const [lit, setLit] = useState(null)
+  const [fade, setFade] = useState(true)
 
   const tab = TABS[tIdx]
   const sCfg = STATUS_CFG[tab.id]
@@ -183,7 +201,7 @@ function EngineDemo() {
           </thead>
           <tbody>
             {tab.rows.map((row, i) => {
-              const s   = st(row, i)
+              const s = st(row, i)
               const cfg = sCfg[s]
               return (
                 <motion.tr key={`${tab.id}-${i}`}
@@ -243,16 +261,16 @@ function Hero() {
     <section className="hero">
       <div className="con">
         <F>
-          <p className="eyebrow">AI automation suite for accounting firms</p>
+          <p className="eyebrow">AI junior staff for accounting firms</p>
         </F>
         <F delay={0.05}>
           <h1 className="h1">
-            Automate the grunt work<br className="desk-br" /> your firm runs on.
+            Stop hiring juniors<br className="desk-br" /> for grunt work.
           </h1>
         </F>
         <F delay={0.09}>
           <p className="sub">
-            Reconciliation, tax matching, report generation, data cleanup. Your team does all of it manually, every month, for every client. Matcha automates the lot.
+            The work your juniors do before any filing — bank recon, tax matching, monthly reports, ledger cleanup — runs on Matcha at a fraction of headcount cost.
           </p>
         </F>
         <F delay={0.13}>
@@ -273,15 +291,14 @@ function Hero() {
 /* ─── Stats ─── */
 function Stats() {
   const stats = [
-    { val: '< 6 min', label: 'Average reconciliation time' },
-    { val: '99%',     label: 'Match accuracy across all task types' },
-    { val: '50+',     label: 'Source formats supported' },
-    { val: '10×',     label: 'Faster than manual spreadsheet work' },
+    { val: '~169', label: 'End-clients across 5 paying firms' },
+    { val: '600+', label: 'Reconciliations run, zero false positives' },
+    { val: '10×', label: 'Faster than manual' },
   ]
   return (
     <div className="stats-band">
       <div className="con">
-        <div className="stats-row-4">
+        <div className="stats-row-3">
           {stats.map((s, i) => (
             <F key={s.label} delay={i * 0.04}>
               <div className="stat">
@@ -302,25 +319,25 @@ const SUITE = [
     icon: <RefreshCw size={20} />,
     title: 'Reconciliation',
     tag: 'Bank · Vendor · Inter-company · GST',
-    desc: 'Upload your bank export and ledger. Matcha standardises both, matches every record, and flags what doesn\'t line up — in minutes, not hours.',
+    desc: 'Junior accountant, 3–6 hours per client per month. Matcha runs it in minutes.',
   },
   {
     icon: <FileText size={20} />,
     title: 'Tax matching',
     tag: 'GSTR-2B · ITC · TDS · Sales Tax',
-    desc: 'Match invoice data against portal records before filing. Catch ITC discrepancies, flag missing invoices, and surface errors before they become penalties.',
+    desc: 'Match invoice data against portal records before filing. Catch ITC discrepancies and flag errors before they become penalties.',
   },
   {
     icon: <BarChart2 size={20} />,
     title: 'Report generation',
     tag: 'P&L · Vendor aging · Monthly close',
-    desc: 'Feed in raw data; get formatted monthly reports out. No manual formatting, no copy-paste from Excel. Ready to send to clients.',
+    desc: 'Feed in raw data; get formatted monthly reports out. No manual formatting, no copy-paste from Excel.',
   },
   {
     icon: <Cpu size={20} />,
-    title: 'Data standardisation',
+    title: 'Ledger cleanup',
     tag: 'Tally · QuickBooks · Xero · Any CSV',
-    desc: 'Your clients send data in a dozen different formats. Matcha reads any schema, normalises it, and makes it usable — regardless of source.',
+    desc: 'Your clients send data in a dozen different formats. Matcha reads any schema, normalises it, and makes it usable.',
   },
 ]
 
@@ -329,11 +346,8 @@ function Suite() {
     <section className="suite-sec">
       <div className="con">
         <F>
-          <p className="sec-label">What we automate</p>
+          <p className="sec-label">The work this replaces</p>
           <h2 className="sec-h">Everything your juniors do manually, automated.</h2>
-          <p className="sec-sub">
-            We started with reconciliation because it's the most painful. We're building outward to cover every repetitive task inside an accounting firm.
-          </p>
         </F>
         <div className="suite-grid">
           {SUITE.map((s, i) => (
@@ -357,20 +371,20 @@ const STEPS = [
   {
     num: '01',
     icon: <Upload size={20} />,
-    title: 'Upload whatever you have',
-    desc: 'CSV, PDF, bank export, GST portal download, Tally XML, vendor statement — any format, any layout. No ERP. No setup call. No IT team.',
+    title: 'Pull whatever you have',
+    desc: 'CSV, PDF, bank export, GST portal download, Tally XML, vendor statement — any format, any layout. No ERP. No setup call.',
   },
   {
     num: '02',
     icon: <Cpu size={20} />,
     title: 'AI reads, standardises, and processes',
-    desc: 'The engine detects the schema, normalises the data, runs the matching or generation logic, and flags every exception — automatically.',
+    desc: 'The engine detects the schema, normalises the data, runs the matching or generation logic, and flags every exception — automatically. Client data runs on private inference. Never sent to a public LLM.',
   },
   {
     num: '03',
     icon: <CheckCircle size={20} />,
     title: 'Clean output, exceptions surfaced',
-    desc: 'What took junior staff 3–6 hours takes minutes. Your team reviews exceptions, not raw data. No rework unless something is genuinely wrong.',
+    desc: 'What took junior staff 3–6 hours takes minutes. Your team reviews exceptions, not raw data.',
   },
 ]
 
@@ -411,7 +425,7 @@ function ROIChart() {
           <div className="chart-card-full roi-card">
             <div className="chart-card-head">
               <div>
-                <h3 className="chart-card-title">Staff hours spent on manual work per month</h3>
+                <h3 className="chart-card-title">Why firms cut junior hours 80–90% on Matcha</h3>
                 <p className="chart-card-sub">As your client base grows — manual labour vs Matcha</p>
               </div>
               <span className="chart-badge">
@@ -461,9 +475,9 @@ function ROIChart() {
 /* ─── Pricing ─── */
 const PLANS = [
   {
-    tier:  'Solo',
+    tier: 'Solo',
     price: '$50',
-    desc:  'For solo practitioners managing up to 20 clients.',
+    desc: 'For solo practitioners managing up to 20 clients.',
     features: [
       'Unlimited reconciliations',
       'Tax matching & ITC verification',
@@ -473,9 +487,9 @@ const PLANS = [
     ],
   },
   {
-    tier:  'Firm',
+    tier: 'Firm',
     price: '$200',
-    desc:  'For small firms managing up to 50 clients.',
+    desc: 'For small firms managing up to 50 clients.',
     features: [
       'Everything in Solo',
       'Report generation (P&L, recon, aging)',
@@ -485,9 +499,9 @@ const PLANS = [
     ],
   },
   {
-    tier:  'Scale',
+    tier: 'Scale',
     price: '$500',
-    desc:  'For mid-size firms with 50+ clients and a full team.',
+    desc: 'For mid-size firms with 50+ clients and a full team.',
     features: [
       'Everything in Firm',
       'Unlimited clients & users',
@@ -505,7 +519,7 @@ function Pricing() {
         <F>
           <p className="sec-label">Pricing</p>
           <h2 className="sec-h">The labour we replace costs 10–100× our price</h2>
-          <p className="sec-sub">A single complex reconciliation costs $150–500 in staff time. We charge a fraction of that. ROI is immediate.</p>
+          <p className="sec-sub">A junior accountant costs ~$500/month in India, $4,000+/month in the US. Matcha replaces most of that work for less than a single timesheet.</p>
         </F>
         <div className="pricing-grid">
           {PLANS.map((plan, i) => (
@@ -534,11 +548,6 @@ function Pricing() {
             </F>
           ))}
         </div>
-        <F delay={0.25}>
-          <p className="pricing-footnote">
-            Early access pricing. 12 users paid ₹250/task via UPI before we had a payment gateway. We kept pricing intentionally low to validate — moving to monthly SaaS now.
-          </p>
-        </F>
       </div>
     </section>
   )
