@@ -261,21 +261,21 @@ function Hero() {
     <section className="hero">
       <div className="con">
         <F>
-          <p className="eyebrow">AI junior staff for accounting firms</p>
+          <p className="eyebrow">AI for Accounting Firms</p>
         </F>
         <F delay={0.05}>
           <h1 className="h1">
-            Stop hiring juniors<br className="desk-br" /> for grunt work.
+            Less grunt work.<br className="desk-br" />More <span className="accent">growth.</span>
           </h1>
         </F>
         <F delay={0.09}>
           <p className="sub">
-            The work your juniors do before any filing — bank recon, tax matching, monthly reports, ledger cleanup — runs on Matcha at a fraction of headcount cost.
+            Bank recon, tax matching, report generation — automated.
           </p>
         </F>
         <F delay={0.13}>
           <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn-cta btn-lg">
-            Book a free demo <ArrowRight size={15} />
+            Book a Demo <ArrowRight size={15} />
           </a>
         </F>
         <F delay={0.18}>
@@ -316,28 +316,25 @@ function Stats() {
 /* ─── Suite ─── */
 const SUITE = [
   {
-    icon: <RefreshCw size={20} />,
-    title: 'Reconciliation',
-    tag: 'Bank · Vendor · Inter-company · GST',
-    desc: 'Junior accountant, 3–6 hours per client per month. Matcha runs it in minutes.',
+    icon: <RefreshCw size={24} />,
+    title: 'Bank Reconciliation',
+    subtitle: 'Bank recon in minutes, not hours',
+    desc: 'Upload bank statements and ledgers in any format. Matcha matches transactions automatically and flags exceptions.',
+    visual: 'bars'
   },
   {
-    icon: <FileText size={20} />,
-    title: 'Tax matching',
-    tag: 'GSTR-2B · ITC · TDS · Sales Tax',
-    desc: 'Match invoice data against portal records before filing. Catch ITC discrepancies and flag errors before they become penalties.',
+    icon: <FileText size={24} />,
+    title: 'Tax Matching',
+    subtitle: 'ITC verified before filing',
+    desc: 'Match invoices against GSTR-2B automatically. Catch discrepancies before they become penalties.',
+    visual: 'rings'
   },
   {
-    icon: <BarChart2 size={20} />,
-    title: 'Report generation',
-    tag: 'P&L · Vendor aging · Monthly close',
-    desc: 'Feed in raw data; get formatted monthly reports out. No manual formatting, no copy-paste from Excel.',
-  },
-  {
-    icon: <Cpu size={20} />,
-    title: 'Ledger cleanup',
-    tag: 'Tally · QuickBooks · Xero · Any CSV',
-    desc: 'Your clients send data in a dozen different formats. Matcha reads any schema, normalises it, and makes it usable.',
+    icon: <BarChart2 size={24} />,
+    title: 'Reports',
+    subtitle: 'One-click monthly reports',
+    desc: 'P&L, vendor aging, recon summaries — generated automatically from your data. No manual formatting.',
+    visual: 'flow'
   },
 ]
 
@@ -345,19 +342,100 @@ function Suite() {
   return (
     <section className="suite-sec">
       <div className="con">
-        <F>
-          <p className="sec-label">The work this replaces</p>
-          <h2 className="sec-h">Everything your juniors do manually, automated.</h2>
-        </F>
-        <div className="suite-grid">
+        <div className="feature-grid-editorial">
           {SUITE.map((s, i) => (
-            <F key={s.title} delay={i * 0.06}>
-              <div className="suite-card">
-                <div className="suite-icon">{s.icon}</div>
-                <p className="suite-tag">{s.tag}</p>
-                <h3 className="suite-title">{s.title}</h3>
-                <p className="suite-desc">{s.desc}</p>
-              </div>
+            <F key={s.title} delay={i * 0.15}>
+              <motion.div
+                className="feature-card-editorial"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, delay: i * 0.2 }}
+                whileHover={{ y: -8 }}
+              >
+                <div className="feature-visual-editorial">
+                  {s.visual === 'bars' && (
+                    <div className="mini-bars">
+                      {[50, 75, 40, 90, 65].map((height, idx) => (
+                        <motion.div
+                          key={idx}
+                          className="mini-bar"
+                          initial={{ scaleY: 0 }}
+                          whileInView={{ scaleY: 1 }}
+                          viewport={{ once: true }}
+                          transition={{
+                            duration: 1.2,
+                            delay: 0.3 + idx * 0.1,
+                            ease: [0.34, 1.56, 0.64, 1]
+                          }}
+                          style={{ height: `${height}%` }}
+                        />
+                      ))}
+                    </div>
+                  )}
+
+                  {s.visual === 'rings' && (
+                    <div className="match-rings">
+                      {[140, 100, 60].map((size, idx) => (
+                        <motion.div
+                          key={idx}
+                          className="match-ring"
+                          initial={{ scale: 0 }}
+                          whileInView={{ scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{
+                            duration: 0.8,
+                            delay: 0.3 + idx * 0.15,
+                            ease: [0.34, 1.56, 0.64, 1]
+                          }}
+                          style={{
+                            width: `${size}px`,
+                            height: `${size}px`,
+                            borderColor: idx === 0 ? 'var(--green)' : `rgba(17, 182, 122, ${0.5 - idx * 0.2})`
+                          }}
+                        />
+                      ))}
+                      <motion.div
+                        className="match-center"
+                        initial={{ scale: 0 }}
+                        whileInView={{ scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.75, ease: [0.34, 1.56, 0.64, 1] }}
+                      >
+                        <CheckCircle size={18} />
+                      </motion.div>
+                    </div>
+                  )}
+
+                  {s.visual === 'flow' && (
+                    <div className="flow-steps">
+                      {[
+                        { icon: <Upload size={14} />, text: 'Upload raw data' },
+                        { icon: <Cpu size={14} />, text: 'AI processes privately' },
+                        { icon: <FileText size={14} />, text: 'Reports ready' }
+                      ].map((step, idx) => (
+                        <motion.div
+                          key={idx}
+                          className="flow-step"
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5, delay: 0.3 + idx * 0.15 }}
+                        >
+                          <div className="flow-step-icon">{step.icon}</div>
+                          <span className="flow-step-text">{step.text}</span>
+                          <div className="flow-step-check">
+                            <CheckCircle size={10} />
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                <h3 className="feature-title-editorial">{s.title}</h3>
+                <p className="feature-desc-editorial">{s.desc}</p>
+              </motion.div>
             </F>
           ))}
         </div>
@@ -371,20 +449,26 @@ const STEPS = [
   {
     num: '01',
     icon: <Upload size={20} />,
-    title: 'Pull whatever you have',
-    desc: 'CSV, PDF, bank export, GST portal download, Tally XML, vendor statement — any format, any layout. No ERP. No setup call.',
+    title: 'Upload Data',
+    desc: 'Any format — CSV, PDF, Tally, portal exports',
   },
   {
     num: '02',
     icon: <Cpu size={20} />,
-    title: 'AI reads, standardises, and processes',
-    desc: 'The engine detects the schema, normalises the data, runs the matching or generation logic, and flags every exception — automatically. Client data runs on private inference. Never sent to a public LLM.',
+    title: 'AI Parses',
+    desc: 'Understands schema, normalises data automatically',
   },
   {
     num: '03',
     icon: <CheckCircle size={20} />,
-    title: 'Clean output, exceptions surfaced',
-    desc: 'What took junior staff 3–6 hours takes minutes. Your team reviews exceptions, not raw data.',
+    title: 'Match & Flag',
+    desc: 'Records matched, exceptions surfaced',
+  },
+  {
+    num: '04',
+    icon: <FileText size={20} />,
+    title: 'Export',
+    desc: 'Output goes straight into Tally or tax software',
   },
 ]
 
@@ -393,9 +477,9 @@ function HowItWorks() {
     <section className="steps-sec">
       <div className="con">
         <F>
-          <p className="sec-label">How it works</p>
-          <h2 className="sec-h">Upload. Process. Done.</h2>
-          <p className="sec-sub">No integration, no onboarding, no pilot project. Upload your data and get results on the first try.</p>
+          <p className="sec-label">The Solution</p>
+          <h2 className="sec-h">One engine. One reviewer.</h2>
+          <p className="sec-sub">A firm doesn't need five juniors doing manual data work. They just need our engine and someone to review the output.</p>
         </F>
         <div className="steps-grid">
           {STEPS.map((s, i) => (
