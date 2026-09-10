@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Matcha checks every invoice, lien, and expense on the disbursement sheet against the documents that prove it, before the money moves. Built for personal injury law firms." />
-  <title>Matcha - Settlement Back Office for Personal Injury Firms</title>
+  <meta name="description" content="Every outstanding quote tracked, followed up on schedule, and reactivated when it goes cold. Interested prospects land back with the agent, warm and ready to close." />
+  <title>Matcha - Quote Follow-Up & Reactivation for Insurance Agencies</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700&family=Playfair+Display:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -2506,16 +2506,16 @@
       <div class="hero-text">
         <span class="eyebrow">
           <span class="eyebrow-dot"></span>
-          AI-Native Back Office for Personal Injury Firms
+          AI-Native Back Office for Insurance Agencies
         </span>
         <h1>
-          <span class="hl-line"><span class="hl-word">The case settled.</span></span>
-          <span class="hl-line accent-line"><span class="hl-word accent">We close out the money.</span></span>
+          <span class="hl-line"><span class="hl-word">The quote went out.</span></span>
+          <span class="hl-line accent-line"><span class="hl-word accent">We bring the answer back.</span></span>
         </h1>
-        <p class="hero-sub">We check every invoice, lien, and expense on the disbursement sheet against the documents that prove it, before the money moves. Nothing leaves your case management system.</p>
+        <p class="hero-sub">Every outstanding quote tracked, followed up on schedule, and reactivated when it goes cold. Interested prospects land back with the agent, warm and with the full history attached.</p>
         <div class="hero-actions">
           <a href="https://calendly.com/matchanow-org/20-minute-meeting" target="_blank" rel="noopener noreferrer" class="btn-primary">
-            Bring us your next settlement
+            Bring us your open quotes
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>
@@ -2540,227 +2540,236 @@
               <div class="engine-tabs">
                 <button class="engine-tab active" data-tab="recon">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
-                  Lien Check
+                  Open Quotes
                 </button>
                 <button class="engine-tab" data-tab="tax">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                  Invoice Match
+                  Reactivation
                 </button>
                 <button class="engine-tab" data-tab="reports">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-                  Disbursement Sheet
+                  Agent Handoffs
                 </button>
               </div>
             </div>
 
             <div class="engine-body">
-              <!-- Bank Recon Tab -->
               <div class="tab-content active" id="tab-recon">
                 <div class="engine-stats">
                   <div class="engine-stat">
-                    <div class="stat-label">Liens Checked</div>
-                    <div class="stat-value">2,847</div>
+                    <div class="stat-label">Quotes Tracked</div>
+                    <div class="stat-value">1,412</div>
                     <div class="stat-trend">
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-                      +127 today
+                      +38 today
                     </div>
                   </div>
                   <div class="engine-stat">
-                    <div class="stat-label">Verified</div>
-                    <div class="stat-value green">98.4%</div>
-                    <div class="stat-trend">Zero stale liens</div>
+                    <div class="stat-label">Followed Up</div>
+                    <div class="stat-value green">97.2%</div>
+                    <div class="stat-trend">
+                      On schedule, every one
+                    </div>
                   </div>
                   <div class="engine-stat">
-                    <div class="stat-label">Time Saved</div>
-                    <div class="stat-value">186h</div>
-                    <div class="stat-trend">This month</div>
+                    <div class="stat-label">Closed</div>
+                    <div class="stat-value">214</div>
+                    <div class="stat-trend">
+                      From tracked follow-up
+                    </div>
                   </div>
                 </div>
                 <table class="engine-table">
                   <thead>
                     <tr>
-                      <th>Case Ref</th>
-                      <th>Lien Holder</th>
-                      <th style="text-align:right">Amount</th>
+                      <th>Quote</th>
+                      <th>Prospect</th>
+                      <th style="text-align:right">Premium</th>
                       <th>Status</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td class="mono-cell">PI-2024-1187</td>
-                      <td>Mercy General Hospital</td>
-                      <td class="amount-cell">$18,450.00</td>
-                      <td class="status-cell"><span class="status-pill matched"><span class="status-dot"></span>Matched</span></td>
+                      <td class="mono-cell">QT-1187</td>
+                      <td>Harding Family, Auto + Home</td>
+                      <td class="amount-cell">$3,450</td>
+                      <td class="status-cell"><span class="status-pill matched"><span class="status-dot"></span>Replied</span></td>
                     </tr>
                     <tr id="recon-mismatch">
-                      <td class="mono-cell">PI-2024-1193</td>
-                      <td>UnitedHealthcare Lien</td>
-                      <td class="amount-cell">$6,220.50</td>
-                      <td class="status-cell"><span class="status-pill mismatch" id="recon-status"><span class="status-dot"></span>Mismatch</span></td>
+                      <td class="mono-cell">QT-1193</td>
+                      <td>Beacon Logistics, Commercial</td>
+                      <td class="amount-cell">$18,220</td>
+                      <td class="status-cell"><span class="status-pill mismatch" id="recon-status"><span class="status-dot"></span>Gone Cold</span></td>
                     </tr>
                     <tr>
-                      <td class="mono-cell">PI-2024-1201</td>
-                      <td>St. Luke's ER</td>
-                      <td class="amount-cell">$4,100.00</td>
-                      <td class="status-cell"><span class="status-pill matched"><span class="status-dot"></span>Matched</span></td>
+                      <td class="mono-cell">QT-1201</td>
+                      <td>Ruiz Household, Auto</td>
+                      <td class="amount-cell">$2,100</td>
+                      <td class="status-cell"><span class="status-pill matched"><span class="status-dot"></span>Replied</span></td>
                     </tr>
                     <tr>
-                      <td class="mono-cell">PI-2024-1206</td>
-                      <td>Dr. Alan Ramirez (Expert)</td>
-                      <td class="amount-cell">$2,875.00</td>
-                      <td class="status-cell"><span class="status-pill review"><span class="status-dot"></span>Review</span></td>
+                      <td class="mono-cell">QT-1206</td>
+                      <td>Lakeside Cafe, BOP</td>
+                      <td class="amount-cell">$4,875</td>
+                      <td class="status-cell"><span class="status-pill review"><span class="status-dot"></span>Follow-Up Queued</span></td>
                     </tr>
                     <tr>
-                      <td class="mono-cell">PI-2024-1214</td>
-                      <td>Medicare Recovery</td>
-                      <td class="amount-cell">$9,600.00</td>
-                      <td class="status-cell"><span class="status-pill matched"><span class="status-dot"></span>Matched</span></td>
+                      <td class="mono-cell">QT-1214</td>
+                      <td>Fenton Contracting, GL</td>
+                      <td class="amount-cell">$9,600</td>
+                      <td class="status-cell"><span class="status-pill matched"><span class="status-dot"></span>Replied</span></td>
                     </tr>
                   </tbody>
                 </table>
                 <div class="engine-footer">
-                  <span>Lien Ledger vs Case File</span>
-                  <span id="recon-count">4/5 matched</span>
+                  <span>Outstanding quotes · Auto-followed</span>
+                  <span id="recon-count">4/5 replied</span>
                 </div>
               </div>
 
-              <!-- AP Match Tab -->
               <div class="tab-content" id="tab-tax">
                 <div class="engine-stats">
                   <div class="engine-stat">
-                    <div class="stat-label">Invoices</div>
-                    <div class="stat-value">1,284</div>
+                    <div class="stat-label">Old Quotes</div>
+                    <div class="stat-value">3,208</div>
                     <div class="stat-trend">
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-                      +52 today
+                      +112 imported
                     </div>
                   </div>
                   <div class="engine-stat">
-                    <div class="stat-label">Verified</div>
-                    <div class="stat-value green">96.8%</div>
-                    <div class="stat-trend">No discrepancies</div>
+                    <div class="stat-label">Reactivated</div>
+                    <div class="stat-value green">411</div>
+                    <div class="stat-trend">
+                      Back in conversation
+                    </div>
                   </div>
                   <div class="engine-stat">
-                    <div class="stat-label">Found</div>
-                    <div class="stat-value">$52K</div>
-                    <div class="stat-trend">Unbilled expert invoices</div>
+                    <div class="stat-label">Recovered</div>
+                    <div class="stat-value">$186K</div>
+                    <div class="stat-trend">
+                      In premium, from dead quotes
+                    </div>
                   </div>
                 </div>
                 <table class="engine-table">
                   <thead>
                     <tr>
-                      <th>Invoice ID</th>
-                      <th>Vendor</th>
-                      <th style="text-align:right">Amount</th>
+                      <th>Quote</th>
+                      <th>Last Contact</th>
+                      <th style="text-align:right">Premium</th>
                       <th>Status</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td class="mono-cell">INV-5501</td>
-                      <td>Dr. Sarah Chen (Expert Witness)</td>
-                      <td class="amount-cell">$7,800</td>
-                      <td class="status-cell"><span class="status-pill matched"><span class="status-dot"></span>Verified</span></td>
+                      <td class="mono-cell">QT-0412</td>
+                      <td>14 months ago</td>
+                      <td class="amount-cell">$5,800</td>
+                      <td class="status-cell"><span class="status-pill matched"><span class="status-dot"></span>Interested</span></td>
                     </tr>
                     <tr id="tax-mismatch">
-                      <td class="mono-cell">INV-5502</td>
-                      <td>Metro Court Reporting</td>
+                      <td class="mono-cell">QT-0587</td>
+                      <td>9 months ago</td>
                       <td class="amount-cell">$3,750</td>
-                      <td class="status-cell"><span class="status-pill mismatch" id="tax-status"><span class="status-dot"></span>Discrepancy</span></td>
+                      <td class="status-cell"><span class="status-pill mismatch" id="tax-status"><span class="status-dot"></span>No Response</span></td>
                     </tr>
                     <tr>
-                      <td class="mono-cell">INV-5503</td>
-                      <td>Pacific Medical Records</td>
+                      <td class="mono-cell">QT-0698</td>
+                      <td>11 months ago</td>
                       <td class="amount-cell">$1,350</td>
-                      <td class="status-cell"><span class="status-pill matched"><span class="status-dot"></span>Verified</span></td>
+                      <td class="status-cell"><span class="status-pill matched"><span class="status-dot"></span>Interested</span></td>
                     </tr>
                     <tr>
-                      <td class="mono-cell">INV-5504</td>
-                      <td>Apex Investigations</td>
+                      <td class="mono-cell">QT-0733</td>
+                      <td>7 months ago</td>
                       <td class="amount-cell">$4,500</td>
-                      <td class="status-cell"><span class="status-pill review"><span class="status-dot"></span>Pending</span></td>
+                      <td class="status-cell"><span class="status-pill review"><span class="status-dot"></span>Sequence Running</span></td>
                     </tr>
                     <tr>
-                      <td class="mono-cell">INV-5505</td>
-                      <td>Sterling Deposition Services</td>
+                      <td class="mono-cell">QT-0801</td>
+                      <td>16 months ago</td>
                       <td class="amount-cell">$2,125</td>
-                      <td class="status-cell"><span class="status-pill matched"><span class="status-dot"></span>Verified</span></td>
+                      <td class="status-cell"><span class="status-pill matched"><span class="status-dot"></span>Interested</span></td>
                     </tr>
                   </tbody>
                 </table>
                 <div class="engine-footer">
-                  <span>Invoices vs Case File · Completeness</span>
-                  <span id="tax-count">4/5 verified</span>
+                  <span>Previously quoted · Re-approached with context</span>
+                  <span id="tax-count">4/5 engaged</span>
                 </div>
               </div>
 
-              <!-- Reports Tab -->
               <div class="tab-content" id="tab-reports">
                 <div class="engine-stats">
                   <div class="engine-stat">
-                    <div class="stat-label">Sheets</div>
-                    <div class="stat-value">847</div>
+                    <div class="stat-label">Handed Off</div>
+                    <div class="stat-value">214</div>
                     <div class="stat-trend">
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-                      +34 this week
+                      +6 today
                     </div>
                   </div>
                   <div class="engine-stat">
-                    <div class="stat-label">Auto-generated</div>
+                    <div class="stat-label">Warm</div>
                     <div class="stat-value green">100%</div>
-                    <div class="stat-trend">Attorney-reviewed</div>
+                    <div class="stat-trend">
+                      Replied and interested
+                    </div>
                   </div>
                   <div class="engine-stat">
-                    <div class="stat-label">Avg Time</div>
-                    <div class="stat-value">2.4m</div>
-                    <div class="stat-trend">Per case</div>
+                    <div class="stat-label">Avg Response</div>
+                    <div class="stat-value">11m</div>
+                    <div class="stat-trend">
+                      From reply to agent
+                    </div>
                   </div>
                 </div>
                 <table class="engine-table">
                   <thead>
                     <tr>
-                      <th>Case</th>
-                      <th>Sheet Type</th>
-                      <th style="text-align:right">Settled</th>
+                      <th>Prospect</th>
+                      <th>Line</th>
+                      <th style="text-align:right">Agent</th>
                       <th>Status</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td class="mono-cell">Alvarez v. Metro Transit</td>
-                      <td>Disbursement Sheet</td>
-                      <td class="amount-cell">Mar 2026</td>
-                      <td class="status-cell"><span class="status-pill matched"><span class="status-dot"></span>Ready</span></td>
+                      <td class="mono-cell">Harding Family</td>
+                      <td>Auto + Home Bundle</td>
+                      <td class="amount-cell">M. Torres</td>
+                      <td class="status-cell"><span class="status-pill matched"><span class="status-dot"></span>With Agent</span></td>
                     </tr>
                     <tr>
-                      <td class="mono-cell">Chen v. Riverside Medical</td>
-                      <td>Lien Summary</td>
-                      <td class="amount-cell">Mar 2026</td>
-                      <td class="status-cell"><span class="status-pill matched"><span class="status-dot"></span>Ready</span></td>
+                      <td class="mono-cell">Ruiz Household</td>
+                      <td>Auto</td>
+                      <td class="amount-cell">D. Okafor</td>
+                      <td class="status-cell"><span class="status-pill matched"><span class="status-dot"></span>With Agent</span></td>
                     </tr>
                     <tr id="reports-generating">
-                      <td class="mono-cell">Ortiz v. Coastal Freight</td>
-                      <td>Disbursement Sheet</td>
-                      <td class="amount-cell">Mar 2026</td>
-                      <td class="status-cell"><span class="status-pill review" id="reports-status"><span class="status-dot"></span>Generating</span></td>
+                      <td class="mono-cell">Lakeside Cafe</td>
+                      <td>Business Owner's Policy</td>
+                      <td class="amount-cell">M. Torres</td>
+                      <td class="status-cell"><span class="status-pill review" id="reports-status"><span class="status-dot"></span>Assigning</span></td>
                     </tr>
                     <tr>
-                      <td class="mono-cell">Bennett v. Summit Property</td>
-                      <td>Expense Reconciliation</td>
-                      <td class="amount-cell">Mar 2026</td>
-                      <td class="status-cell"><span class="status-pill matched"><span class="status-dot"></span>Ready</span></td>
+                      <td class="mono-cell">Fenton Contracting</td>
+                      <td>General Liability</td>
+                      <td class="amount-cell">S. Patel</td>
+                      <td class="status-cell"><span class="status-pill matched"><span class="status-dot"></span>With Agent</span></td>
                     </tr>
                     <tr>
-                      <td class="mono-cell">Walsh v. Delta Construction</td>
-                      <td>Disbursement Sheet</td>
-                      <td class="amount-cell">Mar 2026</td>
-                      <td class="status-cell"><span class="status-pill matched"><span class="status-dot"></span>Ready</span></td>
+                      <td class="mono-cell">Beacon Logistics</td>
+                      <td>Commercial Auto</td>
+                      <td class="amount-cell">D. Okafor</td>
+                      <td class="status-cell"><span class="status-pill matched"><span class="status-dot"></span>With Agent</span></td>
                     </tr>
                   </tbody>
                 </table>
                 <div class="engine-footer">
-                  <span>Settlement sheets · Auto-prepared</span>
-                  <span id="reports-count">4/5 ready</span>
+                  <span>Warm handoffs · Full history attached</span>
+                  <span id="reports-count">4/5 with agents</span>
                 </div>
               </div>
             </div>
@@ -2779,15 +2788,15 @@
     <div class="stats-grid">
       <div class="stat-box" data-animate>
         <span class="stat-num">0</span>
-        <span class="stat-desc">Numbers on the sheet without a document behind them</span>
+        <span class="stat-desc">Quotes that go quiet without anyone following up</span>
       </div>
       <div class="stat-box" data-animate>
-        <span class="stat-num">60 Days</span>
-        <span class="stat-desc">Medicare's clawback window, tracked automatically</span>
+        <span class="stat-num">5+</span>
+        <span class="stat-desc">Touches the average policy takes to close. Most agents stop at two</span>
       </div>
       <div class="stat-box" data-animate>
-        <span class="stat-num">$40K</span>
-        <span class="stat-desc">Size of one missed invoice, on one case, at one firm</span>
+        <span class="stat-num">2 years</span>
+        <span class="stat-desc">Of previously quoted prospects sitting in your AMS, ready to be worked again</span>
       </div>
     </div>
   </section>
@@ -2797,31 +2806,31 @@
       <div class="section-grid">
         <div class="section-content" data-animate>
           <span class="sec-label">The Problem</span>
-          <h2 class="sec-h">Once the money moves,<br/>there's no taking it back.</h2>
+          <h2 class="sec-h">The quote didn't lose.<br/>The follow-up did.</h2>
           <ul class="problem-list">
             <li>
               <svg class="problem-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>
               </svg>
-              The firm gets one shot. A late invoice after the money is out comes out of the firm's own pocket.
+              An agent quotes, the prospect goes quiet, and the next lead takes the attention. The quote dies of neglect, not price.
             </li>
             <li>
               <svg class="problem-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>
               </svg>
-              A lien that was right at mediation isn't right six months later, and there may not be enough left.
+              Follow-up depends on whoever remembers. CRM tasks pile up until they're archaeology.
             </li>
             <li>
               <svg class="problem-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>
               </svg>
-              Medicare gives 60 days after settlement. Miss it and the government can pursue the attorney personally, for double.
+              Thousands of previously quoted prospects sit in the AMS. Every one of them already raised their hand once.
             </li>
             <li>
               <svg class="problem-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>
               </svg>
-              Every sheet gets checked by hand, line by line, against a file the attorney last touched two years ago.
+              Agents spend their best hours chasing silence instead of closing interest.
             </li>
           </ul>
         </div>
@@ -2832,7 +2841,7 @@
               <div class="doc-icon">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
               </div>
-              <span class="doc-name">lien_notice.pdf</span>
+              <span class="doc-name">quote_4412.pdf</span>
             </div>
             <div class="doc-lines"><div class="doc-line"></div><div class="doc-line"></div><div class="doc-line"></div></div>
           </div>
@@ -2842,7 +2851,7 @@
               <div class="doc-icon">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
               </div>
-              <span class="doc-name">case_expenses.csv</span>
+              <span class="doc-name">ams_export.csv</span>
             </div>
             <div class="doc-lines"><div class="doc-line"></div><div class="doc-line"></div><div class="doc-line"></div></div>
           </div>
@@ -2852,7 +2861,7 @@
               <div class="doc-icon">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
               </div>
-              <span class="doc-name">expert_invoice.pdf</span>
+              <span class="doc-name">prospect_notes.docx</span>
             </div>
             <div class="doc-lines"><div class="doc-line"></div><div class="doc-line"></div><div class="doc-line"></div></div>
           </div>
@@ -2862,7 +2871,7 @@
               <div class="doc-icon">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
               </div>
-              <span class="doc-name">disbursement_sheet.xlsx</span>
+              <span class="doc-name">renewal_list.xlsx</span>
             </div>
             <div class="doc-lines"><div class="doc-line"></div><div class="doc-line"></div><div class="doc-line"></div></div>
           </div>
@@ -2875,8 +2884,8 @@
     <div class="section-inner">
       <div class="solution-header" data-animate>
         <span class="sec-label">How We Work</span>
-        <h2 class="sec-h">AI checks the file. Attorneys sign off.</h2>
-        <p class="solution-sub">We're not another system of record. We sit inside the one you already use and verify the disbursement sheet against the evidence before the money moves.</p>
+        <h2 class="sec-h">AI works the list. Agents work the interested.</h2>
+        <p class="solution-sub">We're not a dialer and we're not replacing your producers. We track every open quote, run the follow-up sequences in your agency's voice, and hand back only the prospects who replied.</p>
       </div>
 
       <div class="process-grid">
@@ -2887,8 +2896,8 @@
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
             </svg>
           </div>
-          <h4 class="step-title">Connect the Case File</h4>
-          <p class="step-desc">Salesforce, Litify. Read-only, inside your own org</p>
+          <h4 class="step-title">Connect Your Book</h4>
+          <p class="step-desc">AMS or CRM, read-only. EZLynx, AMS360, HawkSoft, or a plain export</p>
         </div>
 
         <div class="process-step" data-animate>
@@ -2898,8 +2907,8 @@
               <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
             </svg>
           </div>
-          <h4 class="step-title">We Read Every Document</h4>
-          <p class="step-desc">Invoices, liens, expenses, correspondence, matched to the sheet</p>
+          <h4 class="step-title">We Track Every Quote</h4>
+          <p class="step-desc">Open, aging, and long-dead quotes, all on a follow-up schedule</p>
         </div>
 
         <div class="process-step" data-animate>
@@ -2909,8 +2918,8 @@
               <circle cx="12" cy="12" r="10"/><path d="M8 12l2 2 4-4"/>
             </svg>
           </div>
-          <h4 class="step-title">Flag the Gaps</h4>
-          <p class="step-desc">What's missing, what's stale, what was never asked for</p>
+          <h4 class="step-title">Sequences Run</h4>
+          <p class="step-desc">Drafted in your agency's voice, sent on schedule, replies read</p>
         </div>
 
         <div class="process-step" data-animate>
@@ -2920,8 +2929,8 @@
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
             </svg>
           </div>
-          <h4 class="step-title">Attorney Signs Off</h4>
-          <p class="step-desc">Every flag cites a source document. Nothing moves on a guess</p>
+          <h4 class="step-title">Agents Get the Warm Ones</h4>
+          <p class="step-desc">Interested prospects routed to the right agent within minutes</p>
         </div>
       </div>
     </div>
@@ -2940,8 +2949,8 @@
               <div class="mini-bar"></div>
             </div>
           </div>
-          <h3 class="feature-title">Disbursement Verification</h3>
-          <p class="feature-desc">Every invoice, lien, and expense on the sheet checked against a source document before the money moves.</p>
+          <h3 class="feature-title">Quote Follow-Up</h3>
+          <p class="feature-desc">Every outstanding quote followed up on a schedule until it closes or clearly dies. No quote goes quiet unnoticed.</p>
         </div>
 
         <div class="feature-card" data-animate>
@@ -2957,8 +2966,8 @@
               </div>
             </div>
           </div>
-          <h3 class="feature-title">Lien & Invoice Chasing</h3>
-          <p class="feature-desc">We draft the follow-up emails to vendors and lien holders. A human at the firm sends them, we read the replies and pull the amounts back out.</p>
+          <h3 class="feature-title">Book Reactivation</h3>
+          <p class="feature-desc">Previously quoted prospects re-approached with context from the original quote. Old premium, new conversation.</p>
         </div>
 
         <div class="feature-card" data-animate>
@@ -2972,7 +2981,7 @@
                     <line x1="12" y1="3" x2="12" y2="15"/>
                   </svg>
                 </div>
-                <span class="flow-step-text">Invoice never entered</span>
+                <span class="flow-step-text">Prospect replied</span>
                 <div class="flow-step-check">
                   <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                     <polyline points="20 6 9 17 4 12"/>
@@ -2986,7 +2995,7 @@
                     <rect x="2" y="14" width="20" height="8" rx="2"/>
                   </svg>
                 </div>
-                <span class="flow-step-text">Lien number gone stale</span>
+                <span class="flow-step-text">Right agent found</span>
                 <div class="flow-step-check">
                   <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                     <polyline points="20 6 9 17 4 12"/>
@@ -3000,7 +3009,7 @@
                     <polyline points="14 2 14 8 20 8"/>
                   </svg>
                 </div>
-                <span class="flow-step-text">Expert never billed</span>
+                <span class="flow-step-text">Full history attached</span>
                 <div class="flow-step-check">
                   <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                     <polyline points="20 6 9 17 4 12"/>
@@ -3009,8 +3018,8 @@
               </div>
             </div>
           </div>
-          <h3 class="feature-title">Gap Detection</h3>
-          <p class="feature-desc">What arrived but was never entered. What has no document behind it. What should exist but was never asked for.</p>
+          <h3 class="feature-title">Warm Agent Handoffs</h3>
+          <p class="feature-desc">Replies read, interest detected, and the prospect handed to the right agent with everything they need to close.</p>
         </div>
       </div>
     </div>
@@ -3021,16 +3030,16 @@
       <div class="pricing-header" data-animate style="text-align: center; max-width: 600px; margin: 0 auto;">
         <span class="sec-label">Pricing</span>
         <h2 style="font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 500; color: var(--cream); margin: 24px 0 16px 0;">
-          Priced per case, paid at settlement
+          Flat monthly fee, per producer
         </h2>
         <p style="font-size: 18px; color: var(--t2); line-height: 1.7; margin-bottom: 32px;">
-          A flat fee per settled case. Firms already think in cases, and the math is simple: one missed lien costs more than a year of us.
+          No percentage of premium, no per-lead pricing. One reactivated quote typically covers the quarter.
         </p>
         <a href="https://calendly.com/matchanow-org/20-minute-meeting" target="_blank" rel="noopener noreferrer" class="btn-primary" style="display: inline-flex; margin-top: 16px;">
           Book 20 minutes
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
         </a>
       </div>
     </div>
@@ -3136,8 +3145,8 @@
           row.classList.add('highlight');
           setTimeout(() => {
             status.className = 'status-pill matched';
-            status.innerHTML = '<span class="status-dot"></span>Matched';
-            count.textContent = '5/5 matched';
+            status.innerHTML = '<span class="status-dot"></span>Replied';
+            count.textContent = '5/5 replied';
             row.classList.remove('highlight');
           }, 600);
         }
@@ -3149,8 +3158,8 @@
           row.classList.add('highlight');
           setTimeout(() => {
             status.className = 'status-pill matched';
-            status.innerHTML = '<span class="status-dot"></span>Verified';
-            count.textContent = '5/5 verified';
+            status.innerHTML = '<span class="status-dot"></span>Interested';
+            count.textContent = '5/5 engaged';
             row.classList.remove('highlight');
           }, 600);
         }
@@ -3162,8 +3171,8 @@
           row.classList.add('highlight');
           setTimeout(() => {
             status.className = 'status-pill matched';
-            status.innerHTML = '<span class="status-dot"></span>Ready';
-            count.textContent = '5/5 ready';
+            status.innerHTML = '<span class="status-dot"></span>With Agent';
+            count.textContent = '5/5 with agents';
             row.classList.remove('highlight');
           }, 600);
         }
@@ -3176,24 +3185,24 @@
         const count = document.getElementById('recon-count');
         if (status) {
           status.className = 'status-pill mismatch';
-          status.innerHTML = '<span class="status-dot"></span>Mismatch';
-          count.textContent = '4/5 matched';
+          status.innerHTML = '<span class="status-dot"></span>Gone Cold';
+          count.textContent = '4/5 replied';
         }
       } else if (tabId === 'tax') {
         const status = document.getElementById('tax-status');
         const count = document.getElementById('tax-count');
         if (status) {
           status.className = 'status-pill mismatch';
-          status.innerHTML = '<span class="status-dot"></span>Discrepancy';
-          count.textContent = '4/5 verified';
+          status.innerHTML = '<span class="status-dot"></span>No Response';
+          count.textContent = '4/5 engaged';
         }
       } else if (tabId === 'reports') {
         const status = document.getElementById('reports-status');
         const count = document.getElementById('reports-count');
         if (status) {
           status.className = 'status-pill review';
-          status.innerHTML = '<span class="status-dot"></span>Generating';
-          count.textContent = '4/5 ready';
+          status.innerHTML = '<span class="status-dot"></span>Assigning';
+          count.textContent = '4/5 with agents';
         }
       }
     }
