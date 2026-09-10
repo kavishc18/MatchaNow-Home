@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Matcha - AI-Native Accounting Firm</title>
+  <title>Matcha - Settlement Back Office for Personal Injury Firms</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700&family=Playfair+Display:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -1250,187 +1250,6 @@
       line-height: 1.7;
     }
 
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .pricing-card {
-      background: var(--bg1);
-      border: 1px solid var(--b1);
-      border-radius: 24px;
-      padding: 40px;
-      position: relative;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 300ms;
-    }
-
-    .pricing-card.visible:nth-child(1) { animation: fadeUp 0.6s 0.1s forwards; }
-    .pricing-card.visible:nth-child(2) { animation: fadeUp 0.6s 0.2s forwards; }
-    .pricing-card.visible:nth-child(3) { animation: fadeUp 0.6s 0.3s forwards; }
-
-    .pricing-card:hover {
-      border-color: var(--b2);
-      transform: translateY(-4px) !important;
-    }
-
-    .pricing-featured {
-      border-color: var(--green);
-      box-shadow: 0 0 0 1px var(--green), 0 12px 48px rgba(17, 182, 122, 0.15);
-    }
-
-    .pricing-featured:hover {
-      border-color: var(--green);
-      box-shadow: 0 0 0 1px var(--green), 0 16px 60px rgba(17, 182, 122, 0.25);
-    }
-
-    .pricing-badge {
-      position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--green);
-      color: #fff;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      padding: 6px 16px;
-      border-radius: 100px;
-      box-shadow: 0 4px 16px rgba(17, 182, 122, 0.3);
-    }
-
-    .pricing-featured {
-      border-color: var(--green);
-      box-shadow: 0 0 0 1px var(--green), 0 12px 48px rgba(17, 182, 122, 0.15);
-    }
-
-    .pricing-featured:hover {
-      border-color: var(--green);
-      box-shadow: 0 0 0 1px var(--green), 0 16px 60px rgba(17, 182, 122, 0.25);
-    }
-
-    .pricing-badge {
-      position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--green);
-      color: #fff;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      padding: 6px 16px;
-      border-radius: 100px;
-      box-shadow: 0 4px 16px rgba(17, 182, 122, 0.3);
-    }
-
-    .pricing-tier {
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: var(--t3);
-      margin-bottom: 16px;
-    }
-
-    .pricing-price-row {
-      display: flex;
-      align-items: baseline;
-      gap: 8px;
-      margin-bottom: 16px;
-    }
-
-    .pricing-price {
-      font-family: var(--serif);
-      font-size: 48px;
-      font-weight: 500;
-      letter-spacing: -0.02em;
-      color: var(--cream);
-    }
-
-    .pricing-period {
-      font-size: 16px;
-      color: var(--t3);
-    }
-
-    .pricing-desc {
-      font-size: 15px;
-      color: var(--t2);
-      line-height: 1.6;
-      margin-bottom: 32px;
-      min-height: 48px;
-    }
-
-    .pricing-features {
-      list-style: none;
-      margin-bottom: 32px;
-    }
-
-    .pricing-features li {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 12px 0;
-      font-size: 14px;
-      color: var(--t2);
-      border-bottom: 1px solid var(--b0);
-    }
-
-    .pricing-features li:last-child {
-      border-bottom: none;
-    }
-
-    .pricing-features svg {
-      flex-shrink: 0;
-      margin-top: 2px;
-      color: var(--green);
-    }
-
-    .pricing-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      width: 100%;
-      font-size: 14px;
-      font-weight: 500;
-      padding: 14px 24px;
-      border-radius: 10px;
-      text-decoration: none;
-      transition: all 200ms;
-    }
-
-    .pricing-btn.btn-primary {
-      background: var(--green);
-      color: #fff;
-      border: none;
-    }
-
-    .pricing-btn.btn-primary:hover {
-      background: var(--green-d);
-      box-shadow: 0 0 40px var(--green-glow);
-      transform: translateY(-2px);
-    }
-
-    .pricing-btn.btn-outline {
-      background: transparent;
-      color: var(--t2);
-      border: 1px solid var(--b1);
-    }
-
-    .pricing-btn.btn-outline:hover {
-      background: var(--bg2);
-      border-color: var(--b2);
-      color: var(--cream);
-      transform: translateY(-2px);
-    }
-
     /* CTA */
     .cta-section {
       padding: 160px 24px;
@@ -1603,12 +1422,6 @@
       }
 
       .features-grid {
-        grid-template-columns: 1fr;
-        max-width: 500px;
-        margin: 0 auto;
-      }
-
-      .pricing-grid {
         grid-template-columns: 1fr;
         max-width: 500px;
         margin: 0 auto;
@@ -2025,43 +1838,6 @@
         font-size: 16px;
       }
 
-      .pricing-card {
-        padding: 32px;
-        border-radius: 20px;
-      }
-
-      .pricing-tier {
-        font-size: 13px;
-        margin-bottom: 14px;
-      }
-
-      .pricing-price {
-        font-size: 40px;
-      }
-
-      .pricing-period {
-        font-size: 14px;
-      }
-
-      .pricing-features {
-        margin-bottom: 28px;
-      }
-
-      .pricing-features li {
-        padding: 10px 0;
-        font-size: 13px;
-      }
-
-      .pricing-features svg {
-        width: 14px;
-        height: 14px;
-      }
-
-      .pricing-btn {
-        padding: 14px 28px;
-        font-size: 14px;
-      }
-
       .cta-section {
         padding: 80px 20px;
       }
@@ -2127,10 +1903,6 @@
       .step-icon-wrap svg {
         width: 32px;
         height: 32px;
-      }
-
-      .pricing-price {
-        font-size: 36px;
       }
 
       .cta-inner h2 {
@@ -2245,11 +2017,11 @@
     }
 
     /* Button shine sweep — purely decorative overlay */
-    .btn-primary, .nav-cta, .cta-btn, .pricing-btn {
+    .btn-primary, .nav-cta, .cta-btn {
       position: relative;
       overflow: hidden;
     }
-    .btn-primary::after, .nav-cta::after, .cta-btn::after, .pricing-btn::after {
+    .btn-primary::after, .nav-cta::after, .cta-btn::after {
       content: '';
       position: absolute;
       top: 0; left: -120%;
@@ -2259,7 +2031,7 @@
       pointer-events: none;
       transition: none;
     }
-    .btn-primary:hover::after, .nav-cta:hover::after, .cta-btn:hover::after, .pricing-btn:hover::after {
+    .btn-primary:hover::after, .nav-cta:hover::after, .cta-btn:hover::after {
       animation: btnShine 0.7s ease;
     }
     @keyframes btnShine {
@@ -2267,10 +2039,10 @@
       to { left: 160%; }
     }
     /* Arrow nudge inside buttons */
-    .btn-primary svg, .nav-cta svg, .cta-btn svg, .pricing-btn svg {
+    .btn-primary svg, .nav-cta svg, .cta-btn svg {
       transition: transform 0.25s ease;
     }
-    .btn-primary:hover svg, .nav-cta:hover svg, .cta-btn:hover svg, .pricing-btn:hover svg {
+    .btn-primary:hover svg, .nav-cta:hover svg, .cta-btn:hover svg {
       transform: translateX(4px);
     }
 
@@ -2278,27 +2050,8 @@
     .magnetic { transition: transform 0.25s cubic-bezier(0.22,1,0.36,1); will-change: transform; }
 
     /* Card tilt smoothing */
-    .feature-card, .pricing-card { transform-style: preserve-3d; will-change: transform; }
+    .feature-card { transform-style: preserve-3d; will-change: transform; }
     .feature-card .feature-title, .feature-card .feature-desc { transform: translateZ(28px); }
-    .pricing-card .pricing-tier, .pricing-card .pricing-price-row { transform: translateZ(26px); }
-
-    /* Pricing price flips up when its card animates in */
-    .pricing-card .pricing-price {
-      display: inline-block;
-      opacity: 0;
-      transform: translateY(14px);
-    }
-    .pricing-card.visible .pricing-price {
-      animation: priceRise 0.6s 0.35s cubic-bezier(0.22,1,0.36,1) forwards;
-    }
-    @keyframes priceRise { to { opacity: 1; transform: translateY(0); } }
-
-    /* Featured pricing card gets a slow breathing glow */
-    .pricing-featured { animation: featuredGlow 3.5s ease-in-out infinite; }
-    @keyframes featuredGlow {
-      0%,100% { box-shadow: 0 0 0 1px var(--green), 0 12px 48px rgba(17,182,122,0.15); }
-      50% { box-shadow: 0 0 0 1px var(--green), 0 16px 64px rgba(17,182,122,0.30); }
-    }
 
     /* Eyebrow & badge subtle float */
     .eyebrow { will-change: transform; }
@@ -2552,8 +2305,6 @@
 
   <!-- ============ STORYBOARD SCROLL LAYER (additive) ============ -->
   <style id="storyboard">
-    /* ---- Unified storyboard reveal: replaces the flat fadeUp with directional,
-           blurred, staggered "panel opening" reveals tied to scroll-into-view ---- */
     [data-animate] {
       animation: none !important;
       opacity: 0;
@@ -2565,7 +2316,6 @@
         filter 0.9s ease var(--sb-delay, 0s);
       will-change: opacity, transform, filter;
     }
-    /* slower, springier unfold timing for the 3D variants */
     [data-animate].sb-unfold,
     [data-animate].sb-unbox,
     [data-animate].sb-swing-l,
@@ -2577,34 +2327,27 @@
         filter 0.9s ease var(--sb-delay, 0s);
     }
 
-    /* directional slides (kept for subtle elements) */
     [data-animate].sb-left   { transform: translateX(-78px) translateY(8px); }
     [data-animate].sb-right  { transform: translateX(78px)  translateY(8px); }
     [data-animate].sb-scale  { transform: scale(0.86) translateY(34px); }
     [data-animate].sb-rise   { transform: translateY(64px); }
 
-    /* ---- UNPACK variants: content folds/swings/unboxes open in 3D ---- */
-    /* panel hinges down from a top edge, like a lid lifting toward you */
     [data-animate].sb-unfold {
       transform-origin: 50% 0%;
       transform: perspective(1500px) rotateX(-82deg) translateY(38px);
     }
-    /* box lid pops open: tips back + scales up from below */
     [data-animate].sb-unbox {
       transform-origin: 50% 100%;
       transform: perspective(1400px) rotateX(34deg) scale(0.82) translateY(46px);
     }
-    /* swing open like a door, hinged on the left edge */
     [data-animate].sb-swing-l {
       transform-origin: 0% 50%;
       transform: perspective(1600px) rotateY(58deg) translateX(-30px);
     }
-    /* swing open hinged on the right edge */
     [data-animate].sb-swing-r {
       transform-origin: 100% 50%;
       transform: perspective(1600px) rotateY(-58deg) translateX(30px);
     }
-    /* card flip: tips up from horizontal into place */
     [data-animate].sb-flip {
       transform-origin: 50% 80%;
       transform: perspective(1200px) rotateX(48deg) translateY(40px) scale(0.92);
@@ -2616,14 +2359,12 @@
       filter: blur(0) !important;
     }
 
-    /* ---- Curtain-wipe headings: the line "opens" left-to-right ---- */
     .sb-wipe {
       clip-path: inset(0 100% 0 0);
       transition: clip-path 1.15s cubic-bezier(0.76, 0, 0.24, 1) var(--sb-delay, 0.15s);
     }
     .sb-wipe.sb-in { clip-path: inset(0 0 0 0); }
 
-    /* ---- Line-by-line list reveal (problem list) ---- */
     .problem-list li {
       opacity: 0;
       transform: translateX(-22px);
@@ -2637,22 +2378,6 @@
     .problem-list.sb-in li:nth-child(3) { transition-delay: 0.42s; }
     .problem-list.sb-in li:nth-child(4) { transition-delay: 0.54s; }
 
-    /* ---- Pricing feature rows cascade in once the card opens ---- */
-    .pricing-card .pricing-features li {
-      opacity: 0;
-      transform: translateY(10px);
-      transition:
-        opacity 0.5s ease,
-        transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .pricing-card.visible .pricing-features li { opacity: 1; transform: none; }
-    .pricing-card.visible .pricing-features li:nth-child(1) { transition-delay: 0.45s; }
-    .pricing-card.visible .pricing-features li:nth-child(2) { transition-delay: 0.55s; }
-    .pricing-card.visible .pricing-features li:nth-child(3) { transition-delay: 0.65s; }
-    .pricing-card.visible .pricing-features li:nth-child(4) { transition-delay: 0.75s; }
-    .pricing-card.visible .pricing-features li:nth-child(5) { transition-delay: 0.85s; }
-
-    /* ---- Process connector beam draws across as the row enters ---- */
     .process-grid { --beam: 0; }
     .process-step::after {
       transform-origin: 0 50%;
@@ -2748,8 +2473,7 @@
     @media (prefers-reduced-motion: reduce) {
       [data-animate] { opacity: 1 !important; transform: none !important; filter: none !important; }
       .sb-wipe { clip-path: none !important; }
-      .problem-list li,
-      .pricing-card .pricing-features li { opacity: 1 !important; transform: none !important; }
+      .problem-list li { opacity: 1 !important; transform: none !important; }
     }
   </style>
 </head>
@@ -2767,7 +2491,7 @@
   <nav id="nav">
     <span class="logo">Matcha</span>
     <a href="https://calendly.com/matchanow-org/20-minute-meeting" target="_blank" rel="noopener noreferrer" class="nav-cta">
-      Book a demo
+      Book 20 minutes
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M5 12h14M12 5l7 7-7 7"/>
       </svg>
@@ -2781,16 +2505,16 @@
       <div class="hero-text">
         <span class="eyebrow">
           <span class="eyebrow-dot"></span>
-          AI-Native Accounting Firm
+          AI-Native Back Office for Personal Injury Firms
         </span>
         <h1>
-          <span class="hl-line"><span class="hl-word">Same books.</span></span>
-          <span class="hl-line accent-line"><span class="hl-word accent">Half the bill.</span></span>
+          <span class="hl-line"><span class="hl-word">The case settled.</span></span>
+          <span class="hl-line accent-line"><span class="hl-word accent">We close out the money.</span></span>
         </h1>
-        <p class="hero-sub">Automated where it should be. CPA-reviewed where it matters.</p>
+        <p class="hero-sub">We check every invoice, lien, and expense on the disbursement sheet against the documents that prove it, before the money moves. Nothing leaves your case management system.</p>
         <div class="hero-actions">
           <a href="https://calendly.com/matchanow-org/20-minute-meeting" target="_blank" rel="noopener noreferrer" class="btn-primary">
-            Book a free demo
+            Bring us your next settlement
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>
@@ -2815,15 +2539,15 @@
               <div class="engine-tabs">
                 <button class="engine-tab active" data-tab="recon">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
-                  Bank Recon
+                  Lien Check
                 </button>
                 <button class="engine-tab" data-tab="tax">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                  Tax Match
+                  Invoice Match
                 </button>
                 <button class="engine-tab" data-tab="reports">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-                  Reports
+                  Disbursement Sheet
                 </button>
               </div>
             </div>
@@ -2833,7 +2557,7 @@
               <div class="tab-content active" id="tab-recon">
                 <div class="engine-stats">
                   <div class="engine-stat">
-                    <div class="stat-label">Processed</div>
+                    <div class="stat-label">Liens Checked</div>
                     <div class="stat-value">2,847</div>
                     <div class="stat-trend">
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
@@ -2841,9 +2565,9 @@
                     </div>
                   </div>
                   <div class="engine-stat">
-                    <div class="stat-label">Match Rate</div>
+                    <div class="stat-label">Verified</div>
                     <div class="stat-value green">98.4%</div>
-                    <div class="stat-trend">Zero false positives</div>
+                    <div class="stat-trend">Zero stale liens</div>
                   </div>
                   <div class="engine-stat">
                     <div class="stat-label">Time Saved</div>
@@ -2854,52 +2578,52 @@
                 <table class="engine-table">
                   <thead>
                     <tr>
-                      <th>Reference</th>
-                      <th>Counterparty</th>
+                      <th>Case Ref</th>
+                      <th>Lien Holder</th>
                       <th style="text-align:right">Amount</th>
                       <th>Status</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td class="mono-cell">CHK-2025-0412</td>
-                      <td>Acme Corporation</td>
-                      <td class="amount-cell">$12,450.00</td>
+                      <td class="mono-cell">PI-2024-1187</td>
+                      <td>Mercy General Hospital</td>
+                      <td class="amount-cell">$18,450.00</td>
                       <td class="status-cell"><span class="status-pill matched"><span class="status-dot"></span>Matched</span></td>
                     </tr>
                     <tr id="recon-mismatch">
-                      <td class="mono-cell">CHK-2025-0413</td>
-                      <td>Global Logistics LLC</td>
-                      <td class="amount-cell">$8,920.50</td>
+                      <td class="mono-cell">PI-2024-1193</td>
+                      <td>UnitedHealthcare Lien</td>
+                      <td class="amount-cell">$6,220.50</td>
                       <td class="status-cell"><span class="status-pill mismatch" id="recon-status"><span class="status-dot"></span>Mismatch</span></td>
                     </tr>
                     <tr>
-                      <td class="mono-cell">CHK-2025-0414</td>
-                      <td>Tech Solutions Inc</td>
-                      <td class="amount-cell">$5,200.00</td>
+                      <td class="mono-cell">PI-2024-1201</td>
+                      <td>St. Luke's ER</td>
+                      <td class="amount-cell">$4,100.00</td>
                       <td class="status-cell"><span class="status-pill matched"><span class="status-dot"></span>Matched</span></td>
                     </tr>
                     <tr>
-                      <td class="mono-cell">CHK-2025-0415</td>
-                      <td>Office Supplies Co</td>
-                      <td class="amount-cell">$1,875.25</td>
+                      <td class="mono-cell">PI-2024-1206</td>
+                      <td>Dr. Alan Ramirez (Expert)</td>
+                      <td class="amount-cell">$2,875.00</td>
                       <td class="status-cell"><span class="status-pill review"><span class="status-dot"></span>Review</span></td>
                     </tr>
                     <tr>
-                      <td class="mono-cell">CHK-2025-0416</td>
-                      <td>Consulting Partners</td>
-                      <td class="amount-cell">$15,600.00</td>
+                      <td class="mono-cell">PI-2024-1214</td>
+                      <td>Medicare Recovery</td>
+                      <td class="amount-cell">$9,600.00</td>
                       <td class="status-cell"><span class="status-pill matched"><span class="status-dot"></span>Matched</span></td>
                     </tr>
                   </tbody>
                 </table>
                 <div class="engine-footer">
-                  <span>Bank vs Ledger · USD</span>
+                  <span>Lien Ledger vs Case File</span>
                   <span id="recon-count">4/5 matched</span>
                 </div>
               </div>
 
-              <!-- Tax Match Tab -->
+              <!-- AP Match Tab -->
               <div class="tab-content" id="tab-tax">
                 <div class="engine-stats">
                   <div class="engine-stat">
@@ -2911,14 +2635,14 @@
                     </div>
                   </div>
                   <div class="engine-stat">
-                    <div class="stat-label">Tax Verified</div>
+                    <div class="stat-label">Verified</div>
                     <div class="stat-value green">96.8%</div>
                     <div class="stat-trend">No discrepancies</div>
                   </div>
                   <div class="engine-stat">
-                    <div class="stat-label">Saved</div>
+                    <div class="stat-label">Found</div>
                     <div class="stat-value">$52K</div>
-                    <div class="stat-trend">Penalty avoided</div>
+                    <div class="stat-trend">Unbilled expert invoices</div>
                   </div>
                 </div>
                 <table class="engine-table">
@@ -2926,45 +2650,45 @@
                     <tr>
                       <th>Invoice ID</th>
                       <th>Vendor</th>
-                      <th style="text-align:right">Tax Amount</th>
+                      <th style="text-align:right">Amount</th>
                       <th>Status</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <td class="mono-cell">INV-5501</td>
-                      <td>Johnson & Associates</td>
+                      <td>Dr. Sarah Chen (Expert Witness)</td>
                       <td class="amount-cell">$7,800</td>
                       <td class="status-cell"><span class="status-pill matched"><span class="status-dot"></span>Verified</span></td>
                     </tr>
                     <tr id="tax-mismatch">
                       <td class="mono-cell">INV-5502</td>
-                      <td>Metro Supplies Inc</td>
-                      <td class="amount-cell">$14,750</td>
+                      <td>Metro Court Reporting</td>
+                      <td class="amount-cell">$3,750</td>
                       <td class="status-cell"><span class="status-pill mismatch" id="tax-status"><span class="status-dot"></span>Discrepancy</span></td>
                     </tr>
                     <tr>
                       <td class="mono-cell">INV-5503</td>
-                      <td>Pacific Trading Co</td>
-                      <td class="amount-cell">$4,350</td>
+                      <td>Pacific Medical Records</td>
+                      <td class="amount-cell">$1,350</td>
                       <td class="status-cell"><span class="status-pill matched"><span class="status-dot"></span>Verified</span></td>
                     </tr>
                     <tr>
                       <td class="mono-cell">INV-5504</td>
-                      <td>Apex Technologies</td>
-                      <td class="amount-cell">$34,500</td>
+                      <td>Apex Investigations</td>
+                      <td class="amount-cell">$4,500</td>
                       <td class="status-cell"><span class="status-pill review"><span class="status-dot"></span>Pending</span></td>
                     </tr>
                     <tr>
                       <td class="mono-cell">INV-5505</td>
-                      <td>Sterling Services LLC</td>
-                      <td class="amount-cell">$11,125</td>
+                      <td>Sterling Deposition Services</td>
+                      <td class="amount-cell">$2,125</td>
                       <td class="status-cell"><span class="status-pill matched"><span class="status-dot"></span>Verified</span></td>
                     </tr>
                   </tbody>
                 </table>
                 <div class="engine-footer">
-                  <span>Invoices vs Sales Tax · Compliance</span>
+                  <span>Invoices vs Case File · Completeness</span>
                   <span id="tax-count">4/5 verified</span>
                 </div>
               </div>
@@ -2973,7 +2697,7 @@
               <div class="tab-content" id="tab-reports">
                 <div class="engine-stats">
                   <div class="engine-stat">
-                    <div class="stat-label">Reports</div>
+                    <div class="stat-label">Sheets</div>
                     <div class="stat-value">847</div>
                     <div class="stat-trend">
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
@@ -2983,58 +2707,58 @@
                   <div class="engine-stat">
                     <div class="stat-label">Auto-generated</div>
                     <div class="stat-value green">100%</div>
-                    <div class="stat-trend">No manual work</div>
+                    <div class="stat-trend">Attorney-reviewed</div>
                   </div>
                   <div class="engine-stat">
                     <div class="stat-label">Avg Time</div>
                     <div class="stat-value">2.4m</div>
-                    <div class="stat-trend">Per report</div>
+                    <div class="stat-trend">Per case</div>
                   </div>
                 </div>
                 <table class="engine-table">
                   <thead>
                     <tr>
-                      <th>Client</th>
-                      <th>Report Type</th>
-                      <th style="text-align:right">Period</th>
+                      <th>Case</th>
+                      <th>Sheet Type</th>
+                      <th style="text-align:right">Settled</th>
                       <th>Status</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td class="mono-cell">Sharma & Co</td>
-                      <td>Monthly P&L</td>
-                      <td class="amount-cell">Mar 2025</td>
+                      <td class="mono-cell">Alvarez v. Metro Transit</td>
+                      <td>Disbursement Sheet</td>
+                      <td class="amount-cell">Mar 2026</td>
                       <td class="status-cell"><span class="status-pill matched"><span class="status-dot"></span>Ready</span></td>
                     </tr>
                     <tr>
-                      <td class="mono-cell">Patel Ventures</td>
-                      <td>GSTR Summary</td>
-                      <td class="amount-cell">Mar 2025</td>
+                      <td class="mono-cell">Chen v. Riverside Medical</td>
+                      <td>Lien Summary</td>
+                      <td class="amount-cell">Mar 2026</td>
                       <td class="status-cell"><span class="status-pill matched"><span class="status-dot"></span>Ready</span></td>
                     </tr>
                     <tr id="reports-generating">
-                      <td class="mono-cell">ABC Corporation</td>
-                      <td>Bank Reconciliation</td>
-                      <td class="amount-cell">Mar 2025</td>
+                      <td class="mono-cell">Ortiz v. Coastal Freight</td>
+                      <td>Disbursement Sheet</td>
+                      <td class="amount-cell">Mar 2026</td>
                       <td class="status-cell"><span class="status-pill review" id="reports-status"><span class="status-dot"></span>Generating</span></td>
                     </tr>
                     <tr>
-                      <td class="mono-cell">XYZ Limited</td>
-                      <td>Vendor Aging</td>
-                      <td class="amount-cell">Mar 2025</td>
+                      <td class="mono-cell">Bennett v. Summit Property</td>
+                      <td>Expense Reconciliation</td>
+                      <td class="amount-cell">Mar 2026</td>
                       <td class="status-cell"><span class="status-pill matched"><span class="status-dot"></span>Ready</span></td>
                     </tr>
                     <tr>
-                      <td class="mono-cell">Kumar Associates</td>
-                      <td>TDS Summary</td>
-                      <td class="amount-cell">Mar 2025</td>
+                      <td class="mono-cell">Walsh v. Delta Construction</td>
+                      <td>Disbursement Sheet</td>
+                      <td class="amount-cell">Mar 2026</td>
                       <td class="status-cell"><span class="status-pill matched"><span class="status-dot"></span>Ready</span></td>
                     </tr>
                   </tbody>
                 </table>
                 <div class="engine-footer">
-                  <span>Monthly reports · Auto-prepared</span>
+                  <span>Settlement sheets · Auto-prepared</span>
                   <span id="reports-count">4/5 ready</span>
                 </div>
               </div>
@@ -3053,16 +2777,16 @@
   <section class="stats-band">
     <div class="stats-grid">
       <div class="stat-box" data-animate>
-        <span class="stat-num">$2.6M</span>
-        <span class="stat-desc">In transactions processed</span>
+        <span class="stat-num">0</span>
+        <span class="stat-desc">Numbers on the sheet without a document behind them</span>
       </div>
       <div class="stat-box" data-animate>
-        <span class="stat-num">600+</span>
-        <span class="stat-desc">Month-end closes completed</span>
+        <span class="stat-num">60 Days</span>
+        <span class="stat-desc">Medicare's clawback window, tracked automatically</span>
       </div>
       <div class="stat-box" data-animate>
-        <span class="stat-num">10×</span>
-        <span class="stat-desc">Faster than traditional firms</span>
+        <span class="stat-num">$40K</span>
+        <span class="stat-desc">Size of one missed invoice, on one case, at one firm</span>
       </div>
     </div>
   </section>
@@ -3072,31 +2796,31 @@
       <div class="section-grid">
         <div class="section-content" data-animate>
           <span class="sec-label">The Problem</span>
-          <h2 class="sec-h">Traditional firms are<br/>expensive and slow.</h2>
+          <h2 class="sec-h">Once the money moves,<br/>there's no taking it back.</h2>
           <ul class="problem-list">
             <li>
               <svg class="problem-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>
               </svg>
-              Firms charge $500-3000/hour for work that's mostly data entry
+              The firm gets one shot. A late invoice after the money is out comes out of the firm's own pocket.
             </li>
             <li>
               <svg class="problem-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>
               </svg>
-              Month-end close takes 2-3 weeks when it should take days
+              A lien that was right at mediation isn't right six months later, and there may not be enough left.
             </li>
             <li>
               <svg class="problem-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>
               </svg>
-              Junior staff turnover means you're always training someone new
+              Medicare gives 60 days after settlement. Miss it and the government can pursue the attorney personally, for double.
             </li>
             <li>
               <svg class="problem-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>
               </svg>
-              Errors in reconciliation only caught during review
+              Every sheet gets checked by hand, line by line, against a file the attorney last touched two years ago.
             </li>
           </ul>
         </div>
@@ -3107,7 +2831,7 @@
               <div class="doc-icon">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
               </div>
-              <span class="doc-name">bank_apr.pdf</span>
+              <span class="doc-name">lien_notice.pdf</span>
             </div>
             <div class="doc-lines"><div class="doc-line"></div><div class="doc-line"></div><div class="doc-line"></div></div>
           </div>
@@ -3117,7 +2841,7 @@
               <div class="doc-icon">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
               </div>
-              <span class="doc-name">sales_tax_Q1.xlsx</span>
+              <span class="doc-name">case_expenses.csv</span>
             </div>
             <div class="doc-lines"><div class="doc-line"></div><div class="doc-line"></div><div class="doc-line"></div></div>
           </div>
@@ -3127,7 +2851,7 @@
               <div class="doc-icon">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
               </div>
-              <span class="doc-name">ledger_47.csv</span>
+              <span class="doc-name">expert_invoice.pdf</span>
             </div>
             <div class="doc-lines"><div class="doc-line"></div><div class="doc-line"></div><div class="doc-line"></div></div>
           </div>
@@ -3137,7 +2861,7 @@
               <div class="doc-icon">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
               </div>
-              <span class="doc-name">vendor_inv.xlsx</span>
+              <span class="doc-name">disbursement_sheet.xlsx</span>
             </div>
             <div class="doc-lines"><div class="doc-line"></div><div class="doc-line"></div><div class="doc-line"></div></div>
           </div>
@@ -3150,8 +2874,8 @@
     <div class="section-inner">
       <div class="solution-header" data-animate>
         <span class="sec-label">How We Work</span>
-        <h2 class="sec-h">AI does the work. CPAs review.</h2>
-        <p class="solution-sub">We're an accounting firm that runs on AI. You get the same outputs as a traditional firm, delivered faster and cheaper.</p>
+        <h2 class="sec-h">AI checks the file. Attorneys sign off.</h2>
+        <p class="solution-sub">We're not another system of record. We sit inside the one you already use and verify the disbursement sheet against the evidence before the money moves.</p>
       </div>
 
       <div class="process-grid">
@@ -3162,8 +2886,8 @@
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
             </svg>
           </div>
-          <h4 class="step-title">Upload Data</h4>
-          <p class="step-desc">Any format - CSV, PDF, QuickBooks, bank exports</p>
+          <h4 class="step-title">Connect the Case File</h4>
+          <p class="step-desc">Salesforce, Litify. Read-only, inside your own org</p>
         </div>
 
         <div class="process-step" data-animate>
@@ -3173,8 +2897,8 @@
               <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
             </svg>
           </div>
-          <h4 class="step-title">AI Parses</h4>
-          <p class="step-desc">Understands schema, normalises data automatically</p>
+          <h4 class="step-title">We Read Every Document</h4>
+          <p class="step-desc">Invoices, liens, expenses, correspondence, matched to the sheet</p>
         </div>
 
         <div class="process-step" data-animate>
@@ -3184,8 +2908,8 @@
               <circle cx="12" cy="12" r="10"/><path d="M8 12l2 2 4-4"/>
             </svg>
           </div>
-          <h4 class="step-title">Match & Flag</h4>
-          <p class="step-desc">Records matched, exceptions surfaced</p>
+          <h4 class="step-title">Flag the Gaps</h4>
+          <p class="step-desc">What's missing, what's stale, what was never asked for</p>
         </div>
 
         <div class="process-step" data-animate>
@@ -3195,8 +2919,8 @@
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
             </svg>
           </div>
-          <h4 class="step-title">Export</h4>
-          <p class="step-desc">Output goes straight into QuickBooks or tax software</p>
+          <h4 class="step-title">Attorney Signs Off</h4>
+          <p class="step-desc">Every flag cites a source document. Nothing moves on a guess</p>
         </div>
       </div>
     </div>
@@ -3215,8 +2939,8 @@
               <div class="mini-bar"></div>
             </div>
           </div>
-          <h3 class="feature-title">Month-End Close</h3>
-          <p class="feature-desc">We handle your full close process. Bank recon, journal entries, variance analysis - delivered in days, not weeks.</p>
+          <h3 class="feature-title">Disbursement Verification</h3>
+          <p class="feature-desc">Every invoice, lien, and expense on the sheet checked against a source document before the money moves.</p>
         </div>
 
         <div class="feature-card" data-animate>
@@ -3232,8 +2956,8 @@
               </div>
             </div>
           </div>
-          <h3 class="feature-title">Tax Preparation</h3>
-          <p class="feature-desc">Sales tax, payroll tax, quarterly estimates. We prep everything, CPA-reviewed, ready to file.</p>
+          <h3 class="feature-title">Lien & Invoice Chasing</h3>
+          <p class="feature-desc">We draft the follow-up emails to vendors and lien holders. A human at the firm sends them, we read the replies and pull the amounts back out.</p>
         </div>
 
         <div class="feature-card" data-animate>
@@ -3247,7 +2971,7 @@
                     <line x1="12" y1="3" x2="12" y2="15"/>
                   </svg>
                 </div>
-                <span class="flow-step-text">Upload raw data</span>
+                <span class="flow-step-text">Invoice never entered</span>
                 <div class="flow-step-check">
                   <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                     <polyline points="20 6 9 17 4 12"/>
@@ -3261,7 +2985,7 @@
                     <rect x="2" y="14" width="20" height="8" rx="2"/>
                   </svg>
                 </div>
-                <span class="flow-step-text">AI processes privately</span>
+                <span class="flow-step-text">Lien number gone stale</span>
                 <div class="flow-step-check">
                   <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                     <polyline points="20 6 9 17 4 12"/>
@@ -3275,7 +2999,7 @@
                     <polyline points="14 2 14 8 20 8"/>
                   </svg>
                 </div>
-                <span class="flow-step-text">Reports ready</span>
+                <span class="flow-step-text">Expert never billed</span>
                 <div class="flow-step-check">
                   <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                     <polyline points="20 6 9 17 4 12"/>
@@ -3284,8 +3008,8 @@
               </div>
             </div>
           </div>
-          <h3 class="feature-title">Financial Reporting</h3>
-          <p class="feature-desc">Monthly P&L, balance sheet, cash flow. Board-ready financials without the wait.</p>
+          <h3 class="feature-title">Gap Detection</h3>
+          <p class="feature-desc">What arrived but was never entered. What has no document behind it. What should exist but was never asked for.</p>
         </div>
       </div>
     </div>
@@ -3296,13 +3020,13 @@
       <div class="pricing-header" data-animate style="text-align: center; max-width: 600px; margin: 0 auto;">
         <span class="sec-label">Pricing</span>
         <h2 style="font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 500; color: var(--cream); margin: 24px 0 16px 0;">
-          Custom pricing for your business
+          Priced per case, paid at settlement
         </h2>
         <p style="font-size: 18px; color: var(--t2); line-height: 1.7; margin-bottom: 32px;">
-          Every business is unique. We'll create a tailored plan based on your transaction volume, complexity, and needs.
+          A flat fee per settled case. Firms already think in cases, and the math is simple: one missed lien costs more than a year of us.
         </p>
         <a href="https://calendly.com/matchanow-org/20-minute-meeting" target="_blank" rel="noopener noreferrer" class="btn-primary" style="display: inline-flex; margin-top: 16px;">
-          Book a call for a quote
+          Book 20 minutes
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M5 12h14M12 5l7 7-7 7"/>
           </svg>
@@ -3310,25 +3034,25 @@
       </div>
     </div>
   </section>
-
+<!-- 
   <section class="cta-section">
     <div class="cta-inner">
-      <h2 data-animate>Switch to AI-native accounting.</h2>
-      <p data-animate>Book a call. We'll show you how we work and give you a custom quote.</p>
+      <h2 data-animate>Closing a deal? Bring us in at day one.</h2>
+      <p data-animate>Book 20 minutes. We'll walk you through how the first close works.</p>
       <a href="https://calendly.com/matchanow-org/20-minute-meeting" target="_blank" rel="noopener noreferrer" class="cta-btn" data-animate>
-        Book a free demo
+        Book 20 minutes
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M5 12h14M12 5l7 7-7 7"/>
         </svg>
       </a>
     </div>
-  </section>
+  </section> -->
 
   <footer>
     <span class="foot-logo">Matcha</span>
     <div class="foot-links">
       <a href="https://www.linkedin.com/company/matchanow/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      <a href="https://calendly.com/matchanow-org/20-minute-meeting" target="_blank" rel="noopener noreferrer">Book a demo</a>
+      <a href="https://calendly.com/matchanow-org/20-minute-meeting" target="_blank" rel="noopener noreferrer">Book 20 minutes</a>
     </div>
   </footer>
 
@@ -3348,11 +3072,10 @@
     function updateEnginePerspective() {
       const scrollY = window.scrollY;
       const progress = Math.min(scrollY / scrollRange, 1);
-      // Cubic ease-out for smooth deceleration
       const easeOut = 1 - Math.pow(1 - progress, 3);
       const currentTilt = maxTilt * (1 - easeOut);
       const scale = 1 + (0.05 * easeOut);
-      const mInfluence = 1 - easeOut; // mouse parallax fades as the scene flattens
+      const mInfluence = 1 - easeOut;
       enginePerspective.style.transform =
         `rotateX(${currentTilt + mTiltX * mInfluence}deg) rotateY(${mTiltY * mInfluence}deg) scale(${scale})`;
     }
@@ -3384,17 +3107,14 @@
     const tabContents = document.querySelectorAll('.tab-content');
 
     function switchTab(index) {
-      // Update buttons
       tabButtons.forEach((btn, i) => {
         btn.classList.toggle('active', i === index);
       });
 
-      // Update content with fade
       tabContents.forEach((content, i) => {
         content.classList.toggle('active', i === index);
       });
 
-      // Animate the mismatch fix for current tab
       setTimeout(() => {
         animateFix(tabs[index]);
       }, 1500);
@@ -3473,20 +3193,15 @@
 
     // Auto-cycle tabs every 5 seconds
     function cycleToNextTab() {
-      // Reset current tab before switching
       resetTab(tabs[currentTabIndex]);
-      // Move to next tab
       currentTabIndex = (currentTabIndex + 1) % tabs.length;
       switchTab(currentTabIndex);
     }
 
-    // Start the auto-cycle
     setInterval(cycleToNextTab, 5000);
 
-    // Initial animation for first tab
     setTimeout(() => animateFix('recon'), 1500);
 
-    // Manual tab clicks
     tabButtons.forEach((btn, i) => {
       btn.addEventListener('click', () => {
         resetTab(tabs[currentTabIndex]);
@@ -3552,9 +3267,9 @@
         });
       }
 
-      /* ---- 3D tilt on feature & pricing cards ---- */
+      /* ---- 3D tilt on feature cards ---- */
       if (finePointer && !reduceMotion) {
-        document.querySelectorAll('.feature-card, .pricing-card').forEach((card) => {
+        document.querySelectorAll('.feature-card').forEach((card) => {
           card.addEventListener('mousemove', (e) => {
             const r = card.getBoundingClientRect();
             const px = (e.clientX - r.left) / r.width - 0.5;
@@ -3666,38 +3381,27 @@
     (function () {
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      /* ---- Assign reveal direction + stagger so each scene "opens up" ---- */
       const setVar = (el, d) => el.style.setProperty('--sb-delay', d.toFixed(2) + 's');
 
-      // Problem scene: text swings open from the left, document pile from the right
       document.querySelectorAll('.section-content[data-animate]').forEach(el => el.classList.add('sb-swing-l'));
       document.querySelectorAll('.docs-visual[data-animate]').forEach(el => el.classList.add('sb-swing-r'));
 
-      // Centered headers hinge open from the top; their headlines wipe open
       document.querySelectorAll('.solution-header[data-animate], .pricing-header[data-animate], .cta-inner h2[data-animate]')
         .forEach(el => el.classList.add('sb-unfold'));
       document.querySelectorAll('.solution-header .sec-h, .cta-inner h2[data-animate]')
         .forEach(el => el.classList.add('sb-wipe'));
 
-      // Stat band: each box unboxes in sequence
       document.querySelectorAll('.stats-band .stat-box').forEach((el, i) => { el.classList.add('sb-unbox'); setVar(el, i * 0.12); });
 
-      // Process steps unbox one after another, left to right
       document.querySelectorAll('.process-step').forEach((el, i) => { el.classList.add('sb-flip'); setVar(el, 0.08 + i * 0.13); });
 
-      // Feature cards unbox open in sequence
       document.querySelectorAll('.features-grid .feature-card').forEach((el, i) => { el.classList.add('sb-unbox'); setVar(el, i * 0.14); });
 
-      // Pricing cards flip open in sequence
-      document.querySelectorAll('.pricing-grid .pricing-card').forEach((el, i) => { el.classList.add('sb-flip'); setVar(el, i * 0.13); });
-
-      // CTA copy + button cascade
       const ctaP = document.querySelector('.cta-inner p[data-animate]');
       const ctaBtn = document.querySelector('.cta-btn[data-animate]');
       if (ctaP) { ctaP.classList.add('sb-rise'); setVar(ctaP, 0.12); }
       if (ctaBtn) { ctaBtn.classList.add('sb-rise'); setVar(ctaBtn, 0.24); }
 
-      /* ---- Trigger the wipe + list cascades when their scene enters ---- */
       const sceneObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
